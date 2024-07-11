@@ -1,0 +1,930 @@
+<!-- CSS Styles -->
+<style>
+  /* Global Styles */
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    overflow: hidden;
+  }
+  .page {
+    display: none;
+    height: 120vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+  }
+  .active {
+    display: flex;
+  }
+  .nav-buttons {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  button {
+    background-color: #d50000;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+  button:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Page 1 Styles */
+  .page.page1 {
+    background-color: #ffcdd2;
+  }
+  .page1 .page1-title {
+    font-size: 48px;
+    color: #b71c1c;
+    margin-bottom: 20px;
+  }
+  .page1 .page1-subtitle {
+    font-size: 24px;
+    color: #d32f2f;
+    margin-bottom: 40px;
+  }
+
+  /* Page 2 Styles */
+  .page.page2 {
+    background-color: #ffffff;
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding: 40px 20px;
+  }
+  .page2.active {
+    display: flex;
+    flex-direction: column;
+  }
+  .page2-title {
+    font-size: 36px;
+    color: #c62828;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .timeline-item {
+    background-color: #ffffff;
+    width: calc(50% - 20px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .timeline-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  .timeline-date {
+    font-weight: bold;
+    color: #d50000;
+    margin-bottom: 10px;
+  }
+  .timeline-text {
+    margin: 0;
+    line-height: 1.6;
+  }
+  .timeline-details {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+  }
+  .timeline-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  .timeline-item:hover .timeline-details {
+    display: block;
+  }
+
+  /* Page 3 Styles */
+  .page.page3 {
+    background-color: #ffffff;
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .page3-title {
+    font-size: 36px;
+    color: #c62828;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .content {
+    text-align: left;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #333;
+  }
+  .content h3 {
+    font-size: 24px;
+    color: #d50000;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .content h3:hover {
+    color: #b71c1c;
+  }
+  .content ul {
+    margin-left: 20px;
+    list-style-type: disc;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    max-height: 0;
+    overflow: hidden;
+  }
+  .content ul ul {
+    list-style-type: circle;
+  }
+  .content ul.active {
+    display: block;
+    opacity: 1;
+    max-height: 1000px; /* Arbitrary large value */
+  }
+  .timeline3 {
+    position: relative;
+    margin: 20px 0;
+    padding: 0 40px;
+    list-style: none;
+  }
+  .timeline3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    width: 4px;
+    background: #d50000;
+  }
+  .timeline3-item {
+    position: relative;
+    margin: 20px 0;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .timeline3-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #d50000;
+  }
+  .timeline3-content {
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  .timeline3-content.left {
+    left: 0;
+  }
+  .timeline3-content.right {
+    left: 0;
+  }
+  .timeline3-content p {
+    margin: 0;
+    font-size: 16px;
+  }
+  .image-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .image-container img {
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .image-container.active {
+    display: flex;
+    
+  }
+
+  /* Page 4 Styles */
+  .page.page4 {
+    background-color: #ffffff;
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .page4-title {
+    font-size: 36px;
+    color: #c62828;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .gallery4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .card4 {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card4:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  .card4 img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .card4 h3 {
+    font-size: 20px;
+    color: #d50000;
+    margin: 10px 0;
+  }
+  .modal4 {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content4 {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+    position: relative;
+  }
+  .modal-content4 img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-height: 200px; /* Highlighted Change: This line restricts the height of the image */
+    object-fit: contain; /* Highlighted Change: This line ensures the whole image fits within the given dimensions */
+  }
+  .modal-content4 h3 {
+    font-size: 24px;
+    color: #d50000;
+    margin-top: 10px;
+  }
+  .modal-content4 p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+  }
+  .close4 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #d50000;
+    cursor: pointer;
+  }
+
+  /* Page 5 Styles */
+  .page.page5 {
+    background-color: #ffffff;
+    padding-bottom: 100px; /* Add padding to push content up */
+    overflow-y: auto;
+    justify-content: flex-start; /* Align content to the top */
+    padding: 40px 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .pyramid5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .pyramid-level5 {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pyramid-level5:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  .level-title5 {
+    font-size: 24px;
+    color: #d50000;
+  }
+  .modal5 {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content5 {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+    position: relative;
+    max-height: 80vh; /* Highlighted: Set a maximum height */
+    overflow-y: auto; /* Highlighted: Enable vertical scrolling */
+  }
+  .modal-content5 img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-height: 200px; /* Highlighted Change: This line restricts the height of the image */
+    object-fit: contain; /* Highlighted Change: This line ensures the whole image fits within the given dimensions */
+  }
+  .modal-content5 h3 {
+    font-size: 24px;
+    color: #d50000;
+    margin-top: 10px;
+  }
+  .modal-content5 p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+  }
+  .close5 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #d50000;
+    cursor: pointer;
+  }
+  .pyramid5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .pyramid-level5 {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pyramid-level5:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  .level-title5 {
+    font-size: 24px;
+    color: #d50000;
+  }
+
+  /* New styles for reverse pyramid */
+  .pyramid-level5:nth-child(1) { width: 150%; max-width: 600px; }
+  .pyramid-level5:nth-child(2) { width: 100%; max-width: 500px; }
+  .pyramid-level5:nth-child(3) { width: 50%; max-width: 400px; }
+  .pyramid-level5:nth-child(4) { width: 30%; max-width: 300px; }
+  
+  </style>
+
+<!-- HTML Content -->
+<!-- Page 1 -->
+<div class="page page1 active" id="page1">
+  <h1 class="page1-title">The Vietnam Communist Party</h1>
+  <p class="page1-subtitle">A Journey Through History and Ideology</p>
+  <div class="nav-buttons">
+    <button onclick="showPage('page2')">Begin Presentation</button>
+  </div>
+</div>
+
+<!-- Page 2 -->
+<div class="page page2" id="page2">
+  <h2 class="page2-title">Origins of the Vietnam Communist Party</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">1858</div>
+      <p class="timeline-text">French colonization of Vietnam begins</p>
+      <div class="timeline-details">
+        <p>French forces captured Saigon, marking the start of colonial rule in Vietnam.</p>
+        <img class="timeline-image" src="https://images.unsplash.com/photo-1587032286390-7edffb326523?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="French colonization">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1911-1917</div>
+      <p class="timeline-text">Ho Chi Minh travels abroad, exposed to socialist ideas</p>
+      <div class="timeline-details">
+        <p>Ho Chi Minh worked on ships, visiting various countries and learning about different political ideologies.</p>
+        <img class="timeline-image" src="https://example.com/image2.jpg" alt="Ho Chi Minh travels">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1920</div>
+      <p class="timeline-text">Ho Chi Minh joins French Communist Party</p>
+      <div class="timeline-details">
+        <p>Ho Chi Minh became a founding member of the French Communist Party, solidifying his commitment to communist ideals.</p>
+        <img class="timeline-image" src="https://example.com/image3.jpg" alt="Ho Chi Minh joins French Communist Party">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1925</div>
+      <p class="timeline-text">Vietnamese Revolutionary Youth League founded</p>
+      <div class="timeline-details">
+        <p>This organization aimed to unite Vietnamese youth in the struggle against French colonialism.</p>
+        <img class="timeline-image" src="https://example.com/image4.jpg" alt="Vietnamese Revolutionary Youth League">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1929</div>
+      <p class="timeline-text">Three separate communist organizations form in Vietnam</p>
+      <div class="timeline-details">
+        <p>These groups laid the groundwork for a unified communist movement in Vietnam.</p>
+        <img class="timeline-image" src="https://example.com/image5.jpg" alt="Communist organizations form">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">February 3, 1930</div>
+      <p class="timeline-text">Vietnamese Communist Party officially founded</p>
+      <div class="timeline-details">
+        <p>Ho Chi Minh presided over a meeting in Hong Kong to unite the three communist organizations into a single party.</p>
+        <img class="timeline-image" src="https://example.com/image6.jpg" alt="Vietnamese Communist Party founded">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">October 1930</div>
+      <p class="timeline-text">Renamed Indochinese Communist Party (ICP)</p>
+      <div class="timeline-details">
+        <p>The party expanded its scope to include all of French Indochina, including Laos and Cambodia.</p>
+        <img class="timeline-image" src="https://example.com/image7.jpg" alt="Indochinese Communist Party">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1941</div>
+      <p class="timeline-text">Viet Minh established under ICP leadership</p>
+      <div class="timeline-details">
+        <p>The League for the Independence of Vietnam (Viet Minh) was formed to fight against both Japanese occupation and French colonialism.</p>
+        <img class="timeline-image" src="https://example.com/image8.jpg" alt="Viet Minh established">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">September 2, 1945</div>
+      <p class="timeline-text">Ho Chi Minh declares independence; First Indochina War begins</p>
+      <div class="timeline-details">
+        <p>Following Japan's surrender in World War II, Ho Chi Minh declared the independence of Vietnam, leading to conflict with returning French forces.</p>
+        <img class="timeline-image" src="https://example.com/image9.jpg" alt="Ho Chi Minh declares independence">
+      </div>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page1')">Back</button>
+    <button onclick="showPage('page3')">Next</button>
+  </div>
+</div>
+
+<!-- Page 3 -->
+<div class="page page3" id="page3">
+  <h2 class="page3-title">Role in the Struggle for Independence</h2>
+  <div class="content">
+    <div class="timeline3">
+      <div class="timeline3-item">
+        <div class="timeline3-content left" onclick="toggleDetails(this, '1941.png')">
+          <h3>1. Viet Minh Front (est. 1941):</h3>
+          <ul>
+            <li>Created broad nationalist coalition led by communists</li>
+            <li>Mobilized diverse groups for independence struggle</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline3-item">
+        <div class="timeline3-content right" onclick="toggleDetails(this, '1945.jpg')">
+          <h3>2. World War II (1941-1945):</h3>
+          <ul>
+            <li>Led resistance against Japanese occupation</li>
+            <li>Built popular support and military capabilities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline3-item">
+        <div class="timeline3-content left" onclick="toggleDetails(this, 'CMT8.jpg')">
+          <h3>3. August Revolution (1945):</h3>
+          <ul>
+            <li>Orchestrated nationwide uprising after Japan's surrender</li>
+            <li>Seized power and declared independence</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline3-item">
+        <div class="timeline3-content right" onclick="toggleDetails(this, 'image4.jpg')">
+          <h3>4. First Indochina War (1946-1954):</h3>
+          <ul>
+            <li>Led military and political struggle against French forces</li>
+            <li>Cultivated international support, especially from China and USSR</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline3-item">
+        <div class="timeline3-content left" onclick="toggleDetails(this, 'image5.jpg')">
+          <h3>5. Geneva Conference (1954):</h3>
+          <ul>
+            <li>Negotiated end of French colonial rule</li>
+            <li>Secured control of North Vietnam</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline3-item">
+        <div class="timeline3-content right" onclick="toggleDetails(this, 'image6.jpg')">
+          <h3>6. Reunification Efforts (1954-1975):</h3>
+          <ul>
+            <li>Supported communist forces in South Vietnam</li>
+            <li>Led North Vietnam in conflict against US-backed South</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline3-item">
+        <div class="timeline3-content left" onclick="toggleDetails(this, 'image7.jpg')">
+          <h3>7. Vietnam War:</h3>
+          <ul>
+            <li>Directed military and political strategies against South Vietnam and US forces</li>
+            <li>Achieved final victory and national reunification in 1975</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page2')">Back</button>
+    <button onclick="showPage('page4')">Next</button>
+  </div>
+</div>
+
+<!-- Page 4 -->
+<div class="page page4" id="page4">
+  <h2 class="page4-title">Key Founding Figures</h2>
+  <div class="gallery4">
+    <!-- Card for Ho Chi Minh -->
+    <div class="card4" onclick="openModal('hoChiMinh')">
+      <img src="hoChiMinh.jpg" alt="Ho Chi Minh">
+      <h3>Ho Chi Minh</h3>
+    </div>
+    <!-- Card for Pham Van Dong -->
+    <div class="card4" onclick="openModal('phamVanDong')">
+      <img src="phamVanDong.jpg" alt="Pham Van Dong">
+      <h3>Pham Van Dong</h3>
+    </div>
+    <!-- Card for Vo Nguyen Giap -->
+    <div class="card4" onclick="openModal('voNguyenGiap')">
+      <img src="voNguyenGiap.jpg" alt="Vo Nguyen Giap">
+      <h3>Vo Nguyen Giap</h3>
+    </div>
+    <!-- Card for Le Duan -->
+    <div class="card4" onclick="openModal('leDuan')">
+      <img src="leDuan.jpg" alt="Le Duan">
+      <h3>Le Duan</h3>
+    </div>
+    <!-- Card for Truong Chinh -->
+    <div class="card4" onclick="openModal('truongChinh')">
+      <img src="truongChinh.jpg" alt="Truong Chinh">
+      <h3>Truong Chinh</h3>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page3')">Back</button>
+    <button onclick="showPage('page5')">Next</button>
+  </div>
+</div>
+<!-- Modal for Page 4 -->
+<div class="modal4" id="modal-hoChiMinh">
+  <div class="modal-content4">
+    <span class="close4" onclick="closeModal('hoChiMinh')">&times;</span>
+    <img src="hoChiMinh.jpg" alt="Ho Chi Minh">
+    <h3>Ho Chi Minh (1890-1969)</h3>
+    <p>Most prominent founding figure and national hero. Born as Nguyen Sinh Cung, used various aliases including Nguyen Ai Quoc. Traveled extensively, exposed to communist ideologies abroad. Founded Vietnamese Communist Party in 1930. Led Vietnam's independence movement and became first president of North Vietnam. Revered as "Uncle Ho" and symbol of Vietnamese nationalism.</p>
+  </div>
+</div>
+<div class="modal4" id="modal-phamVanDong">
+  <div class="modal-content4">
+    <span class="close4" onclick="closeModal('phamVanDong')">&times;</span>
+    <img src="phamVanDong.jpg" alt="Pham Van Dong">
+    <h3>Pham Van Dong (1906-2000)</h3>
+    <p>Close associate of Ho Chi Minh. One of the founding members of the Indochinese Communist Party. Served as Prime Minister of North Vietnam and later unified Vietnam.</p>
+  </div>
+</div>
+<div class="modal4" id="modal-voNguyenGiap">
+  <div class="modal-content4">
+    <span class="close4" onclick="closeModal('voNguyenGiap')">&times;</span>
+    <img src="voNguyenGiap.jpg" alt="Vo Nguyen Giap">
+    <h3>Vo Nguyen Giap (1911-2013)</h3>
+    <p>Military leader and strategist. Key figure in the fight against French and American forces. Led the Viet Minh forces to victory at Dien Bien Phu in 1954.</p>
+  </div>
+</div>
+<div class="modal4" id="modal-leDuan">
+  <div class="modal-content4">
+    <span class="close4" onclick="closeModal('leDuan')">&times;</span>
+    <img src="leDuan.jpg" alt="Le Duan">
+    <h3>Le Duan (1907-1986)</h3>
+    <p>Rose to prominence during the resistance against French rule. Became General Secretary of the party after Ho Chi Minh's death. Played crucial role in the reunification of Vietnam.</p>
+  </div>
+</div>
+<div class="modal4" id="modal-truongChinh">
+  <div class="modal-content4">
+    <span class="close4" onclick="closeModal('truongChinh')">&times;</span>
+    <img src="truongChinh.jpg" alt="Truong Chinh">
+    <h3>Truong Chinh (1907-1988)</h3>
+    <p>Early member of the communist movement. Served as General Secretary of the party and later as President. Known for his contributions to party ideology and land reform policies.</p>
+  </div>
+</div>
+
+<!-- Page 5 -->
+<div class="page page5" id="page5">
+  <h2 class="page5-title">Organizational Structure and Governance</h2>
+  <div class="pyramid5">
+    <!-- National Party Congress -->
+    <div class="pyramid-level5" onclick="openModal('nationalPartyCongress')">
+      <h3 class="level-title5">National Party Congress</h3>
+    </div>
+    <!-- Central Committee -->
+    <div class="pyramid-level5" onclick="openModal('centralCommittee')">
+      <h3 class="level-title5">Central Committee</h3>
+    </div>
+    <!-- Politburo -->
+    <div class="pyramid-level5" onclick="openModal('politburo')">
+      <h3 class="level-title5">Politburo</h3>
+    </div>
+    <!-- General Secretary -->
+    <div class="pyramid-level5" onclick="openModal('generalSecretary')">
+      <h3 class="level-title5">General Secretary</h3>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page4')">Back</button>
+    <button onclick="showPage('page6')">Next</button>
+  </div>
+</div>
+<!-- Modal for Page 5 -->
+<div class="modal5" id="modal-nationalPartyCongress">
+  <div class="modal-content5">
+    <span class="close5" onclick="closeModal('nationalPartyCongress')">&times;</span>
+    <img src="nationalPartyCongress.jpg" alt="National Party Congress">
+    <h3>National Party Congress</h3>
+    <p>The National Party Congress is the highest authority within the organizational structure of the Vietnamese Communist Party (VCP). It plays a crucial role in shaping the party's policies and leadership.</p>
+    <p><strong>Function and Importance:</strong></p>
+    <ul>
+      <li>Supreme decision-making body of the VCP</li>
+      <li>Sets party policies and direction for the next five years</li>
+      <li>Elects the Central Committee and other key party organs</li>
+      <li>Approves changes to party statutes and ideology</li>
+    </ul>
+    <p><strong>Frequency:</strong></p>
+    <ul>
+      <li>Convenes every five years</li>
+      <li>Special congresses can be called in extraordinary circumstances</li>
+    </ul>
+    <p><strong>Composition:</strong></p>
+    <ul>
+      <li>Delegates from all levels of the party structure</li>
+      <li>Typically 1,500 to 1,600 delegates</li>
+      <li>Represents party members from across Vietnam</li>
+    </ul>
+    <p><strong>Key Activities:</strong></p>
+    <ul>
+      <li>Reviews party work since the last congress</li>
+      <li>Discusses and approves socio-economic development plans</li>
+      <li>Debates and adopts resolutions on major policy issues</li>
+      <li>Elects new Central Committee members</li>
+      <li>Indirectly selects Politburo members and General Secretary</li>
+    </ul>
+    <p><strong>Preparation:</strong></p>
+    <ul>
+      <li>Extensive planning and discussion at lower levels before the congress</li>
+      <li>Draft documents circulated for feedback within the party</li>
+    </ul>
+    <p><strong>Historical Significance:</strong></p>
+    <ul>
+      <li>Each congress marks a distinct period in Vietnam's political history</li>
+      <li>Often associated with major policy shifts or leadership changes</li>
+    </ul>
+  </div>
+</div>
+<div class="modal5" id="modal-centralCommittee">
+  <div class="modal-content5">
+    <span class="close5" onclick="closeModal('centralCommittee')">&times;</span>
+    <img src="centralCommittee.jpg" alt="Central Committee">
+    <h3>Central Committee</h3>
+    <p>The Central Committee is a crucial component of the Vietnamese Communist Party's (VCP) organizational structure, serving as the main decision-making body between National Party Congresses.</p>
+    <p><strong>Function and Role:</strong></p>
+    <ul>
+      <li>Sets party policy and direction between National Party Congresses</li>
+      <li>Elects the Politburo and Secretariat</li>
+      <li>Nominates candidates for top government positions</li>
+      <li>Oversees implementation of party resolutions</li>
+    </ul>
+    <p><strong>Composition:</strong></p>
+    <ul>
+      <li>Typically 180-200 full members</li>
+      <li>Additional alternate (non-voting) members</li>
+      <li>Represents diverse sectors: party officials, government leaders, military officers, provincial chiefs, and others</li>
+    </ul>
+    <p><strong>Selection Process:</strong></p>
+    <ul>
+      <li>Elected by the National Party Congress</li>
+      <li>Members serve five-year terms</li>
+      <li>Combination of new members and re-elected incumbents</li>
+    </ul>
+    <p><strong>Meeting Frequency:</strong></p>
+    <ul>
+      <li>Plenums (full meetings) held 1-2 times per year</li>
+      <li>Special sessions can be called if needed</li>
+    </ul>
+    <p><strong>Key Responsibilities:</strong></p>
+    <ul>
+      <li>Approving major policy decisions</li>
+      <li>Discussing and resolving significant national issues</li>
+      <li>Monitoring the work of the Politburo and Secretariat</li>
+      <li>Appointing heads of central-level party organizations</li>
+    </ul>
+  </div>
+</div>
+<div class="modal5" id="modal-politburo">
+  <div class="modal-content5">
+    <span class="close5" onclick="closeModal('politburo')">&times;</span>
+    <img src="politburo.jpg" alt="Politburo">
+    <h3>Politburo</h3>
+    <p>The Politburo is the highest decision-making body within the Vietnamese Communist Party (VCP) and plays a crucial role in shaping Vietnam's policies and governance.</p>
+    <p><strong>Function and Role:</strong></p>
+    <ul>
+      <li>Supreme decision-making authority between Central Committee plenums</li>
+      <li>Sets day-to-day policy direction for the party and government</li>
+      <li>Makes key decisions on domestic and foreign policy issues</li>
+      <li>Oversees implementation of party resolutions and policies</li>
+    </ul>
+    <p><strong>Composition:</strong></p>
+    <ul>
+      <li>Typically consists of 15-19 members</li>
+      <li>Includes the most powerful and influential party leaders</li>
+      <li>Members often hold concurrent high-ranking government or party positions</li>
+    </ul>
+  </div>
+</div>
+<div class="modal5" id="modal-generalSecretary">
+  <div class="modal-content5">
+    <span class="close5" onclick="closeModal('generalSecretary')">&times;</span>
+    <img src="generalSecretary.jpg" alt="General Secretary">
+    <h3>General Secretary</h3>
+    <p>The General Secretary is the highest-ranking official in the Vietnamese Communist Party (VCP) and, by extension, the most powerful political figure in Vietnam.</p>
+    <p><strong>Role and Responsibilities:</strong></p>
+    <ul>
+      <li>Head of the Communist Party of Vietnam</li>
+      <li>Chairs meetings of the Politburo and Secretariat</li>
+      <li>Oversees party affairs and ideology</li>
+      <li>Shapes overall policy direction for the country</li>
+      <li>Represents the party in international communist and diplomatic affairs</li>
+    </ul>
+    <p><strong>Powers:</strong></p>
+    <ul>
+      <li>Sets agenda for Politburo and Central Committee meetings</li>
+      <li>Influences key appointments in party and government</li>
+      <li>Final say in major policy decisions</li>
+      <li>Plays crucial role in maintaining party unity and discipline</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- JavaScript -->
+<script>
+  function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+
+    // Show the selected page
+    document.getElementById(pageId).classList.add('active');
+  }
+  function toggleDetails(element, imageUrl) {
+    const ul = element.querySelector('ul');
+    const isActive = ul.classList.contains('active');
+
+    // Reset all other elements
+    document.querySelectorAll('.content ul').forEach(ul => ul.classList.remove('active'));
+    document.querySelectorAll('.timeline3-content').forEach(content => content.classList.remove('active'));
+
+    if (!isActive) {
+      ul.classList.add('active');
+      element.classList.add('active');
+      element.style.backgroundImage = `url(${imageUrl})`;
+    } else {
+      ul.classList.remove('active');
+      element.classList.remove('active');
+      element.style.backgroundImage = '';
+    }
+  }
+  function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+
+    // Show the selected page
+    document.getElementById(pageId).classList.add('active');
+  }
+  function openModal(modalId) {
+    document.getElementById('modal-' + modalId).style.display = 'flex';
+  }
+  function closeModal(modalId) {
+    document.getElementById('modal-' + modalId).style.display = 'none';
+  }
+</script>
