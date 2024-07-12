@@ -7,29 +7,29 @@
     padding: 0;
     font-family: 'Roboto', sans-serif;
     height: 100%;
-    overflow: hidden;
   }
   .page {
     display: none;
-    height: 120vh;
+    min-height: 100vh;
     width: 100%;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     text-align: center;
     position: relative;
+    padding-bottom: 80px; /* Add space for nav buttons */
   }
   .active {
     display: flex;
   }
   .nav-buttons {
     position: fixed;
-    bottom: 40px;
+    bottom: 20px;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     gap: 20px;
+    background-color: transparent;
+    padding: 10px 0;
   }
   button {
     background-color: #d50000;
@@ -52,10 +52,11 @@
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-
+  
   /* Page 1 Styles */
   .page.page1 {
     background-color: #ffcdd2;
+    padding-top: 400px; /* Add padding to push content up */
   }
   .page1 .page1-title {
     font-size: 48px;
@@ -74,7 +75,7 @@
     padding-bottom: 100px; /* Add padding to push content up */
     overflow-y: auto;
     justify-content: flex-start; /* Align content to the top */
-    padding: 40px 20px;
+    padding: 40px 20px 80px;
     animation: fadeIn 1s ease-in-out;
   }
   .page2.active {
@@ -95,7 +96,7 @@
   }
   .timeline-item {
     background-color: #ffffff;
-    width: calc(50% - 20px);
+    width: calc(40% - 20px);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -177,7 +178,6 @@
     opacity: 0;
     transition: opacity 0.5s ease, max-height 0.5s ease;
     max-height: 0;
-    overflow: hidden;
   }
   .content ul ul {
     list-style-type: circle;
@@ -232,7 +232,7 @@
     cursor: pointer;
   }
   .timeline3-content.left {
-    left: 0;
+    left: 100;
   }
   .timeline3-content.right {
     left: 0;
@@ -291,7 +291,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    overflow: hidden;
+    overflow: auto;
     width: 200px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -359,12 +359,11 @@
 
   /* Page 5 Styles */
   .page.page5 {
-  background-color: #ffffff;
-  padding: 40px 20px 120px; /* Increased bottom padding */
-  overflow-y: auto;
-  justify-content: flex-start;
-  animation: fadeIn 1s ease-in-out;
-  min-height: 300vh; /* Ensure the page takes at least the full viewport height */
+    background-color: #ffffff;
+    justify-content: flex-start;
+    padding: 40px 20px 80px;
+    overflow-y: auto;
+    animation: fadeIn 1s ease-in-out;
   }
   .blank-space {
     height: 100vh;
@@ -525,8 +524,257 @@
   .pyramid-level5:nth-child(2) { width: 100%; max-width: 500px; }
   .pyramid-level5:nth-child(3) { width: 50%; max-width: 400px; }
   .pyramid-level5:nth-child(4) { width: 30%; max-width: 300px; }
+
+  /* Page 6 Specific Styles */
+  .page6-body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f4f4f4;
+      text-align: left; /* Default text alignment for the page */
+      animation: fadeIn 1s ease-in-out
+  }
+  .page6-h1, .page6-h2 {
+      color: #d50000;
+      text-align: center;}
+  .page6-card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+  }
+  .page6-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .page6-card .page6-h2 {
+      color: #d50000;
+      margin-top: 0;
+  }
+  .page6-faction-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      gap: 20px;
+  }
+  .page6-faction {
+      width: 48%;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .page6-faction h3 {
+      color: #d50000;
+      margin-top: 0;
+  }
+  .page6-faction ul, .page6-card ul {
+      padding-left: 20px;
+  }
+  #page6-toggle-factions {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #d50000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+  }
+  .page6-faction-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+  }
+  .page6-spacer {
+      height: 100vh;
+  }
+
+  /* Page 7 Specific Styles */
+  .page7 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(to right, #ffcdd2 50%, #ecf0f1 50%);
+      padding: 40px 20px 80px;
+      animation: fadeIn 1s ease-in-out
+  }
+  .page7-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+  }
+  .page7 h1, .page7 h2 {
+      color: #8B0000;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+  }
+  .page7-versus-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 30px;
+  }
+  .page7-fighter {
+      width: 45%;
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .page7-fighter-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: #ddd;
+      margin: 0 auto 20px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .page7-fighter-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  .page7-fighter h2 {
+      color: #8B0000;
+      margin: 0 0 20px 0;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  .page7-vs {
+      font-size: 36px;
+      font-weight: bold;
+      color: #8B0000;
+      background-color: white;
+      padding: 10px;
+      border-radius: 50%;
+      align-self: center;
+  }
+  .page7-stance, .page7-key-aspects {
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      width: 100%;
+  }
+  .page7-key-aspects {
+      margin-top: 30px;
+  }
+  .page7-key-aspects h2 {
+      margin-top: 0;
+  }
+  .page7-show-result-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #8B0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  .page7-show-result-btn:hover {
+      background-color: #A52A2A;
+  }
+  .page7-modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+  }
+  .page7-modal-content {
+      background-color: #f8f9fa;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 12px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: justify;
+  }
+  .page7-close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+  }
+  .page7-close:hover,
+  .page7-close:focus {
+      color: #8B0000;
+      text-decoration: none;
+  }
+  .page7-modal-content h2 {
+      color: #8B0000;
+      border-bottom: 2px solid #CD5C5C;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+  }
+  .page7-modal-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .page7-card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+  }
+  .page7-card h3 {
+      color: #CD5C5C;
+      margin-top: 0;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 10px;
+      text-align: center;
+  }
+  .page7-card ul, .page7-card ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+      text-align: left;
+  }
+  .page7-card li {
+      margin-bottom: 10px;
+  }
+  .page7-card li:last-child {
+      margin-bottom: 0;
+  }
   
-  </style>
+</style>
 
 <!-- HTML Content -->
 <!-- Page 1 -->
@@ -547,7 +795,7 @@
       <p class="timeline-text">French colonization of Vietnam begins</p>
       <div class="timeline-details">
         <p>French forces captured Saigon, marking the start of colonial rule in Vietnam.</p>
-        <img class="timeline-image" src="https://images.unsplash.com/photo-1587032286390-7edffb326523?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="French colonization">
+        <img class="timeline-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Communist_Party_of_Vietnam_flag_logo.svg/1024px-Communist_Party_of_Vietnam_flag_logo.svg.png" alt="French colonization">
       </div>
     </div>
     <div class="timeline-item">
@@ -782,7 +1030,7 @@
 
 <!-- Page 5 -->
 <div class="page page5" id="page5">
-  <h2 class="page5-title">Organizational Structure and Governance</h2>
+  <h2 class="page5-title">Organizational Structure and Governance: "Reverse Pyramid structure"</h2>
   <div class="pyramid5">
     <!-- National Party Congress -->
     <div class="pyramid-level5" onclick="openModal('nationalPartyCongress')">
@@ -805,7 +1053,6 @@
     <button onclick="showPage('page4')">Back</button>
     <button onclick="showPage('page6')">Next</button>
   </div>
-  <div class="blank-space"></div>
 </div>
 <!-- Modal for Page 5 -->
 <div class="modal5" id="modal-nationalPartyCongress">
@@ -913,7 +1160,7 @@
   </div>
 </div>
 <div class="modal5" id="modal-generalSecretary">
-  <div class="modal-content5">
+<div class="modal-content5">
     <span class="close5" onclick="closeModal('generalSecretary')">&times;</span>
     <img src="generalSecretary.jpg" alt="General Secretary">
     <h3>General Secretary</h3>
@@ -933,6 +1180,158 @@
       <li>Final say in major policy decisions</li>
       <li>Plays crucial role in maintaining party unity and discipline</li>
     </ul>
+  </div>
+</div>
+
+<!-- Page 6 HTML -->
+<div class="page" id="page6">
+    <div class="page6-body">
+        <h1 class="page6-h1">Vietnam Communist Party Factionalism</h1>
+
+        <div class="page6-card-container">
+            <div class="page6-card">
+                <h2 class="page6-h2">Inception</h2>
+                <p>Factionalism has been a feature of the Vietnam Communist Party (VCP) since its inception.</p>
+            </div>
+            <div class="page6-card">
+                <h2 class="page6-h2">1986: Doi Moi Reforms</h2>
+                <p>Factionalism intensified after the Doi Moi reforms of 1986.</p>
+            </div>
+            <div class="page6-card">
+                <h2 class="page6-h2">Post-Le Duan Era</h2>
+                <p>Factionalism became more visible in the post-Le Duan era (after 1986).</p>
+            </div>
+            <div class="page6-card">
+                <h2 class="page6-h2">Key Areas of Contention</h2>
+                <ul>
+                    <li>Economic policy: State control vs market liberalization</li>
+                    <li>Foreign policy: Balancing relations between China and the West</li>
+                    <li>Political reform: Degree of openness and pluralism</li>
+                    <li>Pace and extent of anti-corruption efforts</li>
+                </ul>
+            </div>
+            <div class="page6-card">
+                <h2 class="page6-h2">Manifestations of Factionalism</h2>
+                <ul>
+                    <li>Leadership selection at Party Congresses</li>
+                    <li>Policy debates and implementation</li>
+                    <li>Regional differences (North vs South Vietnam)</li>
+                    <li>Generational divides within the party</li>
+                </ul>
+            </div>
+        </div>
+
+        <button id="page6-toggle-factions">Compare Factions</button>
+
+        <div class="page6-faction-container" style="display: none;">
+            <div class="page6-faction">
+                <img src="placeholder_conservatives.jpg" alt="Conservative/Traditionalist representation" class="page6-faction-image">
+                <h3>Conservatives/Traditionalists</h3>
+                <ul>
+                    <li>Emphasize party orthodoxy and socialist ideology</li>
+                    <li>Favor state-led economic development</li>
+                    <li>Prioritize relations with China and other socialist countries</li>
+                </ul>
+            </div>
+            <div class="page6-faction">
+                <img src="placeholder_reformists.jpg" alt="Reformist/Pragmatist representation" class="page6-faction-image">
+                <h3>Reformists/Pragmatists</h3>
+                <ul>
+                    <li>Advocate for faster market reforms and global integration</li>
+                    <li>More open to Western-style governance</li>
+                    <li>Favor closer ties with Western countries, especially the US</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page6-spacer"></div>
+    </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page5')">Back</button>
+    <button onclick="showPage('page7')">Next</button>
+  </div>
+</div>
+
+<!-- Page 7 HTML -->
+<div class="page page7" id="page7">
+    <div class="page7-container">
+        <h1>Vietnam Communist Party Factional Struggle #1: 1990s</h1>
+        <div class="page7-versus-container">
+            <div class="page7-fighter">
+                <div class="page7-fighter-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Do_Muoi_1990.jpg/220px-Do_Muoi_1990.jpg" alt="Do Muoi">
+                </div>
+                <h2>Do Muoi</h2>
+                <div class="page7-stance">
+                    <ul>
+                        <li>Favored a cautious approach to economic reforms</li>
+                        <li>Prioritized maintaining party control and socialist ideology</li>
+                        <li>Skeptical of rapid market liberalization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page7-vs">VS</div>
+            <div class="page7-fighter">
+                <div class="page7-fighter-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Le_Kha_Phieu.jpg/220px-Le_Kha_Phieu.jpg" alt="Le Kha Phieu">
+                </div>
+                <h2>Le Kha Phieu</h2>
+                <div class="page7-stance">
+                    <ul>
+                        <li>Advocated for faster economic reforms and party renovation</li>
+                        <li>Pushed for more technocratic governance</li>
+                        <li>Efforts to reduce corruption faced resistance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="page7-key-aspects">
+            <h2>Key Aspects of This Struggle</h2>
+            <ul>
+                <li>Debate over the pace of Doi Moi economic reforms</li>
+                <li>Tension between ideological purity and pragmatic economic policies</li>
+                <li>Disagreements on how to handle the aftermath of the 1997 Asian Financial Crisis</li>
+                <li>Le Kha Phieu's efforts to reduce corruption faced resistance from entrenched interests</li>
+            </ul>
+        </div>
+
+        <button class="page7-show-result-btn" onclick="openVCPStruggleModal()">Show Result</button>
+    </div>
+
+    <div id="vcpStruggleResultModal" class="page7-modal">
+        <div class="page7-modal-content">
+            <span class="page7-close" onclick="closeVCPStruggleModal()">&times;</span>
+            <h2>Outcome of the Struggle</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1200px-Flag_of_Vietnam.svg.png" alt="Vietnam Flag" class="page7-modal-image">
+
+            <div class="page7-card">
+                <h3>Immediate Results</h3>
+                <ul>
+                    <li>Le Kha Phieu's tenure was relatively short-lived (1997-2001)</li>
+                    <li>His reform efforts were ultimately constrained by conservative resistance</li>
+                    <li>Le Kha Phieu's attempts at party renovation and anti-corruption measures faced significant opposition</li>
+                    <li>This resistance ultimately led to his removal in 2001</li>
+                    <li>Le Kha Phieu was replaced by Nong Duc Manh in 2001</li>
+                    <li>Manh was seen as a centrist, balancing between conservative and reformist factions</li>
+                </ul>
+            </div>
+
+            <div class="page7-card">
+                <h3>Key Points of the Outcome</h3>
+                <ol>
+                    <li><strong>Partial Reformist Victory:</strong> The selection of Le Kha Phieu initially appeared to be a win for reformists, but this victory proved to be limited and short-lived.</li>
+                    <li><strong>Continued Conservative Influence:</strong> Despite the leadership change, conservatives maintained significant power within the party and were able to effectively limit Le Kha Phieu's reform agenda.</li>
+                    <li><strong>Institutional Resistance:</strong> The struggle revealed the strong institutional resistance to rapid changes within the VCP.</li>
+                    <li><strong>Compromise Politics:</strong> The outcome demonstrated the VCP's tendency towards factional compromise rather than outright dominance of one faction.</li>
+                    <li><strong>Groundwork for Future Struggles:</strong> This period set the stage for more intense factional conflicts in the following decades.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page6')">Back</button>
+    <button onclick="showPage('page8')">Next</button>
   </div>
 </div>
 
@@ -980,5 +1379,26 @@
   }
   function closeModal(modalId) {
     document.getElementById('modal-' + modalId).style.display = 'none';
+  }
+  document.getElementById('page6-toggle-factions').addEventListener('click', function() {
+      var factionContainer = document.querySelector('.page6-faction-container');
+      if (factionContainer.style.display === 'none') {
+          factionContainer.style.display = 'flex';
+          this.textContent = 'Hide Factions';
+      } else {
+          factionContainer.style.display = 'none';
+          this.textContent = 'Compare Factions';
+      }
+  });
+  function openVCPStruggleModal() {
+      document.getElementById("vcpStruggleResultModal").style.display = "block";
+  }
+  function closeVCPStruggleModal() {
+      document.getElementById("vcpStruggleResultModal").style.display = "none";
+  }
+  window.onclick = function(event) {
+      if (event.target == document.getElementById("vcpStruggleResultModal")) {
+          closeVCPStruggleModal();
+      }
   }
 </script>
