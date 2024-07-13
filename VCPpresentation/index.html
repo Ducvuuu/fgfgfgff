@@ -773,6 +773,130 @@
   .page7-card li:last-child {
       margin-bottom: 0;
   }
+
+  /* Page 8 Specific Styles */
+  .page8 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+      margin: 0;
+      text-align: left;
+      padding: 40px 20px 80px;
+      animation: fadeIn 1s ease-in-out;
+  }
+  .page8-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .page8-h1 {
+      color: #d50000;
+      text-align: center;
+      border-bottom: 2px solid #d50000;
+      padding-bottom: 10px;
+  }
+  .page8-timeline {
+      position: relative;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+  }
+  .page8-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: #d50000;
+  }
+  .page8-events-container {
+      width: 45%;
+  }
+  .page8-image-container {
+      width: 45%;
+      position: sticky;
+      top: 20px;
+      align-self: flex-start;
+  }
+  .page8-event {
+      padding: 10px 20px;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  .page8-event:hover, .page8-event.active {
+      background-color: #ffebee;
+  }
+  .page8-event-title {
+      font-weight: bold;
+      color: #d50000;
+      display: flex;
+      align-items: center;
+  }
+  .page8-event-title i {
+      margin-right: 10px;
+      font-size: 1.2em;
+  }
+  .page8-event-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+  }
+  .page8-event-content.active {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+  }
+  .page8-image-card {
+      background-color: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 10px;
+      text-align: center;
+  }
+  .page8-image-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+  }
+  .page8-image-caption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #666;
+  }
+  .page8-profile {
+      background-color: #ffebee;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #d50000;
+      display: flex;
+      align-items: flex-start;
+      text-align: left;
+  }
+  .page8-h2 {
+      color: #d50000;
+      margin-top: 0;
+      text-align: left;
+  }
+  .page8-profile ul {
+      padding-left: 20px;
+      text-align: left;
+  }
+  .page8-profile-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 20px;
+  }
   
 </style>
 
@@ -795,7 +919,7 @@
       <p class="timeline-text">French colonization of Vietnam begins</p>
       <div class="timeline-details">
         <p>French forces captured Saigon, marking the start of colonial rule in Vietnam.</p>
-        <img class="timeline-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Communist_Party_of_Vietnam_flag_logo.svg/1024px-Communist_Party_of_Vietnam_flag_logo.svg.png" alt="French colonization">
+        <img class="timeline-image" src="Frech_colonisation_begin.jpg" alt="French colonization">
       </div>
     </div>
     <div class="timeline-item">
@@ -803,7 +927,7 @@
       <p class="timeline-text">Ho Chi Minh travels abroad, exposed to socialist ideas</p>
       <div class="timeline-details">
         <p>Ho Chi Minh worked on ships, visiting various countries and learning about different political ideologies.</p>
-        <img class="timeline-image" src="https://example.com/image2.jpg" alt="Ho Chi Minh travels">
+        <img class="timeline-image" src="HoChiMinh_travel_aboard.jpg" alt="Ho Chi Minh travels">
       </div>
     </div>
     <div class="timeline-item">
@@ -811,7 +935,7 @@
       <p class="timeline-text">Ho Chi Minh joins French Communist Party</p>
       <div class="timeline-details">
         <p>Ho Chi Minh became a founding member of the French Communist Party, solidifying his commitment to communist ideals.</p>
-        <img class="timeline-image" src="https://example.com/image3.jpg" alt="Ho Chi Minh joins French Communist Party">
+        <img class="timeline-image" src="Ho Chi Minh joins French Communist Party.jpg" alt="Ho Chi Minh joins French Communist Party">
       </div>
     </div>
     <div class="timeline-item">
@@ -819,7 +943,7 @@
       <p class="timeline-text">Vietnamese Revolutionary Youth League founded</p>
       <div class="timeline-details">
         <p>This organization aimed to unite Vietnamese youth in the struggle against French colonialism.</p>
-        <img class="timeline-image" src="https://example.com/image4.jpg" alt="Vietnamese Revolutionary Youth League">
+        <img class="timeline-image" src="Vietnamese Revolutionary Youth League founded.jpg" alt="Vietnamese Revolutionary Youth League">
       </div>
     </div>
     <div class="timeline-item">
@@ -827,7 +951,7 @@
       <p class="timeline-text">Three separate communist organizations form in Vietnam</p>
       <div class="timeline-details">
         <p>These groups laid the groundwork for a unified communist movement in Vietnam.</p>
-        <img class="timeline-image" src="https://example.com/image5.jpg" alt="Communist organizations form">
+        <img class="timeline-image" src="Communist_Party_of_Vietnam_flag_logo.svg" alt="Communist organizations form">
       </div>
     </div>
     <div class="timeline-item">
@@ -835,7 +959,7 @@
       <p class="timeline-text">Vietnamese Communist Party officially founded</p>
       <div class="timeline-details">
         <p>Ho Chi Minh presided over a meeting in Hong Kong to unite the three communist organizations into a single party.</p>
-        <img class="timeline-image" src="https://example.com/image6.jpg" alt="Vietnamese Communist Party founded">
+        <img class="timeline-image" src="Vietnamese Communist Party officially founded.jpg" alt="Vietnamese Communist Party founded">
       </div>
     </div>
     <div class="timeline-item">
@@ -843,7 +967,7 @@
       <p class="timeline-text">Renamed Indochinese Communist Party (ICP)</p>
       <div class="timeline-details">
         <p>The party expanded its scope to include all of French Indochina, including Laos and Cambodia.</p>
-        <img class="timeline-image" src="https://example.com/image7.jpg" alt="Indochinese Communist Party">
+        <img class="timeline-image" src="Indochinese_communist_party.svg.png" alt="Indochinese Communist Party">
       </div>
     </div>
     <div class="timeline-item">
@@ -851,7 +975,7 @@
       <p class="timeline-text">Viet Minh established under ICP leadership</p>
       <div class="timeline-details">
         <p>The League for the Independence of Vietnam (Viet Minh) was formed to fight against both Japanese occupation and French colonialism.</p>
-        <img class="timeline-image" src="https://example.com/image8.jpg" alt="Viet Minh established">
+        <img class="timeline-image" src="Viet Minh.jpg" alt="Viet Minh established">
       </div>
     </div>
     <div class="timeline-item">
@@ -859,7 +983,7 @@
       <p class="timeline-text">Ho Chi Minh declares independence; First Indochina War begins</p>
       <div class="timeline-details">
         <p>Following Japan's surrender in World War II, Ho Chi Minh declared the independence of Vietnam, leading to conflict with returning French forces.</p>
-        <img class="timeline-image" src="https://example.com/image9.jpg" alt="Ho Chi Minh declares independence">
+        <img class="timeline-image" src="Ho Chi Minh declares independence.jpg" alt="Ho Chi Minh declares independence">
       </div>
     </div>
   </div>
@@ -1225,7 +1349,7 @@
 
         <div class="page6-faction-container" style="display: none;">
             <div class="page6-faction">
-                <img src="placeholder_conservatives.jpg" alt="Conservative/Traditionalist representation" class="page6-faction-image">
+                <img src="shield.png" alt="Conservative/Traditionalist representation" class="page6-faction-image">
                 <h3>Conservatives/Traditionalists</h3>
                 <ul>
                     <li>Emphasize party orthodoxy and socialist ideology</li>
@@ -1234,7 +1358,7 @@
                 </ul>
             </div>
             <div class="page6-faction">
-                <img src="placeholder_reformists.jpg" alt="Reformist/Pragmatist representation" class="page6-faction-image">
+                <img src="reform.png" alt="Reformist/Pragmatist representation" class="page6-faction-image">
                 <h3>Reformists/Pragmatists</h3>
                 <ul>
                     <li>Advocate for faster market reforms and global integration</li>
@@ -1335,6 +1459,114 @@
   </div>
 </div>
 
+<!-- Page 8 HTML -->
+<div class="page page8" id="page8">
+    <div class="page8-container">
+        <h1 class="page8-h1">2000s: Rise of Southern Reformists under Nong Duc Manh</h1>
+
+        <div class="page8-profile">
+            <img src="dong-chi-nong-duc-manh.jpg" alt="Nong Duc Manh" class="page8-profile-image">
+            <div>
+                <h2 class="page8-h2">Nong Duc Manh (General Secretary 2001-2011):</h2>
+                <ul>
+                    <li>First ethnic minority (Tay) to lead the VCP</li>
+                    <li>Positioned as a centrist, balancing conservative and reformist factions</li>
+                    <li>His leadership coincided with the rise of southern reformists</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page8-timeline">
+            <div class="page8-events-container">
+                <div class="page8-event" onclick="toggleContent(this); updateImage(1)">
+                    <div class="page8-event-title">
+                        <i class="fas fa-user-tie"></i>
+                        Increased Influence of Southern Leaders
+                    </div>
+                    <div class="page8-event-content">
+                        <ul>
+                            <li>Many from the south were seen as more pro-business and reform-oriented</li>
+                            <li>Figures like Nguyen Tan Dung (Prime Minister from 2006) gained prominence</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page8-event" onclick="toggleContent(this); updateImage(2)">
+                    <div class="page8-event-title">
+                        <i class="fas fa-chart-line"></i>
+                        Economic Policies
+                    </div>
+                    <div class="page8-event-content">
+                        <ul>
+                            <li>Acceleration of market-oriented reforms</li>
+                            <li>Increased openness to foreign investment</li>
+                            <li>Vietnam's accession to the WTO in 2007</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page8-event" onclick="toggleContent(this); updateImage(3)">
+                    <div class="page8-event-title">
+                        <i class="fas fa-balance-scale"></i>
+                        Political Reforms
+                    </div>
+                    <div class="page8-event-content">
+                        <ul>
+                            <li>Limited experiments with intra-party democracy</li>
+                            <li>Slightly more open public discourse, though still within strict limits</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page8-event" onclick="toggleContent(this); updateImage(4)">
+                    <div class="page8-event-title">
+                        <i class="fas fa-users"></i>
+                        Factional Dynamics
+                    </div>
+                    <div class="page8-event-content">
+                        <ul>
+                            <li>Southern reformists pushed for faster economic liberalization</li>
+                            <li>Conservatives sought to maintain party control and socialist orientation</li>
+                            <li>Debates over how to manage growing wealth disparities and corruption</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page8-event" onclick="toggleContent(this); updateImage(5)">
+                    <div class="page8-event-title">
+                        <i class="fas fa-globe"></i>
+                        Foreign Policy
+                    </div>
+                    <div class="page8-event-content">
+                        <ul>
+                            <li>Gradual shift towards closer relations with the West, particularly the US</li>
+                            <li>Ongoing debates about how to balance relations with China</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page8-event" onclick="toggleContent(this); updateImage(6)">
+                    <div class="page8-event-title">
+                        <i class="fas fa-flag-checkered"></i>
+                        Outcomes
+                    </div>
+                    <div class="page8-event-content">
+                        <ul>
+                            <li>This period saw significant economic growth and integration into the global economy</li>
+                            <li>The groundwork was laid for more intense factional struggles in the 2010s</li>
+                            <li>The rise of figures like Nguyen Tan Dung set the stage for later conflicts with the conservative faction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="page8-image-container">
+                <div class="page8-image-card">
+                    <img id="eventImage" src="DCS.jpg" alt="Event Image">
+                    <p id="imageCaption" class="page8-image-caption">Click an event to see the corresponding image</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="nav-buttons">
+    <button onclick="showPage('page7')">Back</button>
+    <button onclick="showPage('page9')">Next</button>
+  </div>
+</div>
 
 <!-- JavaScript -->
 <script>
@@ -1400,5 +1632,42 @@
       if (event.target == document.getElementById("vcpStruggleResultModal")) {
           closeVCPStruggleModal();
       }
+  }
+  function toggleContent(element) {
+      const allEvents = document.querySelectorAll('.page8-event');
+      allEvents.forEach(event => {
+          event.classList.remove('active');
+          event.querySelector('.page8-event-content').classList.remove('active');
+      });
+
+      element.classList.add('active');
+      const content = element.querySelector('.page8-event-content');
+      content.classList.add('active');
+  }
+  function updateImage(imageNumber) {
+      const imageElement = document.getElementById('eventImage');
+      const captionElement = document.getElementById('imageCaption');
+
+      // In a real scenario, you would replace these with actual image URLs and captions
+      const imageSources = [
+          "NguyenTanDung.jpg",
+          "Vietnam2007.jpg",
+          "Ba_Dinh_Hall_1462359227_71b04ee08a.jpg",
+          "VN_faction.webp",
+          "VN_US_CH.webp",
+          "nguyen-phu-trong-nguyen-tan-dung-2.jpeg"
+      ];
+
+      const imageCaptions = [
+          "Southern leaders gaining influence in Vietnamese politics (Nguyen Tan Dung in the picture)",
+          "Implementation of market-oriented economic policies",
+          "Gradual political reforms and intra-party democracy",
+          "Balancing act between different factions within the party",
+          "Vietnam's evolving foreign policy and international relations",
+          "Outcomes and impacts of the reforms during this period"
+      ];
+
+      imageElement.src = imageSources[imageNumber - 1];
+      captionElement.textContent = imageCaptions[imageNumber - 1];
   }
 </script>
