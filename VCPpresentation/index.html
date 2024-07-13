@@ -1,903 +1,1152 @@
 <!-- CSS Styles -->
 <style>
-  /* Global Styles */
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-  }
-  .page {
-    display: none;
-    min-height: 100vh;
-    width: 100%;
+/* Global Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+.page {
+  display: none;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  padding-bottom: 80px; /* Add space for nav buttons */
+}
+.active {
+    display: flex;
     flex-direction: column;
-    text-align: center;
-    position: relative;
-    padding-bottom: 80px; /* Add space for nav buttons */
+}
+.nav-buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: transparent;
+  padding: 10px 0;
+}
+button {
+  background-color: #d50000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+button:hover {
+  background-color: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Page 1 Styles */
+.page.page1 {
+  background-color: #ffcdd2;
+  padding-top: 400px; /* Add padding to push content up */
+}
+.page1 .page1-title {
+  font-size: 48px;
+  color: #b71c1c;
+  margin-bottom: 20px;
+}
+.page1 .page1-subtitle {
+  font-size: 24px;
+  color: #d32f2f;
+  margin-bottom: 40px;
+}
+
+/* Page 2 Styles */
+.page.page2 {
+  background-color: #ffffff;
+  padding-bottom: 100px; /* Add padding to push content up */
+  overflow-y: auto;
+  justify-content: flex-start; /* Align content to the top */
+  padding: 40px 20px 80px;
+  animation: fadeIn 1s ease-in-out;
+}
+.page2.active {
+  display: flex;
+  flex-direction: column;
+}
+.page2-title {
+  font-size: 36px;
+  color: #c62828;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.timeline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.timeline-item {
+  background-color: #ffffff;
+  width: calc(40% - 20px);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.timeline-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+.timeline-date {
+  font-weight: bold;
+  color: #d50000;
+  margin-bottom: 10px;
+}
+.timeline-text {
+  margin: 0;
+  line-height: 1.6;
+}
+.timeline-details {
+  display: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+.timeline-image {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.timeline-item:hover .timeline-details {
+  display: block;
+}
+
+/* Page 3 Styles */
+.page.page3 {
+  background-color: #ffffff;
+  padding-bottom: 100px; /* Add padding to push content up */
+  overflow-y: auto;
+  justify-content: flex-start; /* Align content to the top */
+  padding: 40px 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  .active {
-    display: flex;
+  to {
+    opacity: 1;
   }
-  .nav-buttons {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
+}
+.page3-title {
+  font-size: 36px;
+  color: #c62828;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.content {
+  text-align: left;
+  line-height: 1.8;
+  font-size: 18px;
+  color: #333;
+}
+.content h3 {
+  font-size: 24px;
+  color: #d50000;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.content h3:hover {
+  color: #b71c1c;
+}
+.content ul {
+  margin-left: 20px;
+  list-style-type: disc;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+  max-height: 0;
+}
+.content ul ul {
+  list-style-type: circle;
+}
+.content ul.active {
+  display: block;
+  opacity: 1;
+  max-height: 1000px; /* Arbitrary large value */
+}
+.timeline3 {
+  position: relative;
+  margin: 20px 0;
+  padding: 0 40px;
+  list-style: none;
+}
+.timeline3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  width: 4px;
+  background: #d50000;
+}
+.timeline3-item {
+  position: relative;
+  margin: 20px 0;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.timeline3-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #d50000;
+}
+.timeline3-content {
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.timeline3-content.left {
+  left: 100;
+}
+.timeline3-content.right {
+  left: 0;
+}
+.timeline3-content p {
+  margin: 0;
+  font-size: 16px;
+}
+.image-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.image-container img {
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.image-container.active {
+  display: flex;
+  
+}
+
+/* Page 4 Styles */
+.page.page4 {
+  background-color: #ffffff;
+  padding-bottom: 100px; /* Add padding to push content up */
+  overflow-y: auto;
+  justify-content: flex-start; /* Align content to the top */
+  padding: 40px 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.page4-title {
+  font-size: 36px;
+  color: #c62828;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.gallery4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.card4 {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow: auto;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card4:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+.card4 img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.card4 h3 {
+  font-size: 20px;
+  color: #d50000;
+  margin: 10px 0;
+}
+.modal4 {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content4 {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  text-align: left;
+  position: relative;
+}
+.modal-content4 img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  max-height: 200px; /* Highlighted Change: This line restricts the height of the image */
+  object-fit: contain; /* Highlighted Change: This line ensures the whole image fits within the given dimensions */
+}
+.modal-content4 h3 {
+  font-size: 24px;
+  color: #d50000;
+  margin-top: 10px;
+}
+.modal-content4 p {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+}
+.close4 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #d50000;
+  cursor: pointer;
+}
+
+/* Page 5 Styles */
+.page.page5 {
+  background-color: #ffffff;
+  justify-content: flex-start;
+  padding: 40px 20px 80px;
+  overflow-y: auto;
+  animation: fadeIn 1s ease-in-out;
+}
+.blank-space {
+  height: 100vh;
+  width: 100%;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.pyramid5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.pyramid-level5 {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pyramid-level5:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+.level-title5 {
+  font-size: 24px;
+  color: #d50000;
+}
+.modal5 {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content5 {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  text-align: left;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.modal-content5 img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.modal-content5 h3 {
+  font-size: 28px;
+  color: #d50000;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #d50000;
+  padding-bottom: 10px;
+}
+.modal-content5 p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.modal-content5 ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+.modal-content5 li {
+  margin-bottom: 8px;
+  position: relative;
+}
+.modal-content5 li::before {
+  content: '•';
+  color: #d50000;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.close5 {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+  color: #d50000;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.close5:hover {
+  transform: scale(1.1);
+}
+/* Scrollbar styles for webkit browsers */
+.modal-content5::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content5::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.modal-content5::-webkit-scrollbar-thumb {
+  background: #d50000;
+  border-radius: 4px;
+}
+.modal-content5::-webkit-scrollbar-thumb:hover {
+  background: #b71c1c;
+}
+.pyramid5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.pyramid-level5 {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pyramid-level5:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+.level-title5 {
+  font-size: 24px;
+  color: #d50000;
+}
+/* New styles for reverse pyramid */
+.pyramid-level5:nth-child(1) { width: 150%; max-width: 600px; }
+.pyramid-level5:nth-child(2) { width: 100%; max-width: 500px; }
+.pyramid-level5:nth-child(3) { width: 50%; max-width: 400px; }
+.pyramid-level5:nth-child(4) { width: 30%; max-width: 300px; }
+
+/* Page 6 Specific Styles */
+.page6-body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: left; /* Default text alignment for the page */
+    animation: fadeIn 1s ease-in-out
+}
+.page6-h1, .page6-h2 {
+    color: #d50000;
+    text-align: center;}
+.page6-card-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+.page6-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.page6-card .page6-h2 {
+    color: #d50000;
+    margin-top: 0;
+}
+.page6-faction-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
     gap: 20px;
-    background-color: transparent;
-    padding: 10px 0;
-  }
-  button {
+}
+.page6-faction {
+    width: 48%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.page6-faction h3 {
+    color: #d50000;
+    margin-top: 0;
+}
+.page6-faction ul, .page6-card ul {
+    padding-left: 20px;
+}
+#page6-toggle-factions {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
     background-color: #d50000;
     color: white;
     border: none;
-    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    outline: none;
-  }
-  button:hover {
-    background-color: #b71c1c;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  }
-  button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Page 1 Styles */
-  .page.page1 {
-    background-color: #ffcdd2;
-    padding-top: 400px; /* Add padding to push content up */
-  }
-  .page1 .page1-title {
-    font-size: 48px;
-    color: #b71c1c;
-    margin-bottom: 20px;
-  }
-  .page1 .page1-subtitle {
-    font-size: 24px;
-    color: #d32f2f;
-    margin-bottom: 40px;
-  }
-
-  /* Page 2 Styles */
-  .page.page2 {
-    background-color: #ffffff;
-    padding-bottom: 100px; /* Add padding to push content up */
-    overflow-y: auto;
-    justify-content: flex-start; /* Align content to the top */
-    padding: 40px 20px 80px;
-    animation: fadeIn 1s ease-in-out;
-  }
-  .page2.active {
-    display: flex;
-    flex-direction: column;
-  }
-  .page2-title {
-    font-size: 36px;
-    color: #c62828;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .timeline {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .timeline-item {
-    background-color: #ffffff;
-    width: calc(40% - 20px);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  .timeline-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-  }
-  .timeline-date {
-    font-weight: bold;
-    color: #d50000;
-    margin-bottom: 10px;
-  }
-  .timeline-text {
-    margin: 0;
-    line-height: 1.6;
-  }
-  .timeline-details {
-    display: none;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #e0e0e0;
-  }
-  .timeline-image {
-    max-width: 100%;
-    max-height: 200px;
-    border-radius: 8px;
-    margin-top: 10px;
-  }
-  .timeline-item:hover .timeline-details {
-    display: block;
-  }
-
-  /* Page 3 Styles */
-  .page.page3 {
-    background-color: #ffffff;
-    padding-bottom: 100px; /* Add padding to push content up */
-    overflow-y: auto;
-    justify-content: flex-start; /* Align content to the top */
-    padding: 40px 20px;
-    animation: fadeIn 1s ease-in-out;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  .page3-title {
-    font-size: 36px;
-    color: #c62828;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .content {
-    text-align: left;
-    line-height: 1.8;
-    font-size: 18px;
-    color: #333;
-  }
-  .content h3 {
-    font-size: 24px;
-    color: #d50000;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  .content h3:hover {
-    color: #b71c1c;
-  }
-  .content ul {
-    margin-left: 20px;
-    list-style-type: disc;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease, max-height 0.5s ease;
-    max-height: 0;
-  }
-  .content ul ul {
-    list-style-type: circle;
-  }
-  .content ul.active {
-    display: block;
-    opacity: 1;
-    max-height: 1000px; /* Arbitrary large value */
-  }
-  .timeline3 {
-    position: relative;
-    margin: 20px 0;
-    padding: 0 40px;
-    list-style: none;
-  }
-  .timeline3::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
-    width: 4px;
-    background: #d50000;
-  }
-  .timeline3-item {
-    position: relative;
-    margin: 20px 0;
-    text-align: left;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-  }
-  .timeline3-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #d50000;
-  }
-  .timeline3-content {
-    padding: 20px;
-    background: #f0f0f0;
-    border-radius: 6px;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-  }
-  .timeline3-content.left {
-    left: 100;
-  }
-  .timeline3-content.right {
-    left: 0;
-  }
-  .timeline3-content p {
-    margin: 0;
-    font-size: 16px;
-  }
-  .image-container {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  .image-container img {
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .image-container.active {
-    display: flex;
-    
-  }
-
-  /* Page 4 Styles */
-  .page.page4 {
-    background-color: #ffffff;
-    padding-bottom: 100px; /* Add padding to push content up */
-    overflow-y: auto;
-    justify-content: flex-start; /* Align content to the top */
-    padding: 40px 20px;
-    animation: fadeIn 1s ease-in-out;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  .page4-title {
-    font-size: 36px;
-    color: #c62828;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .gallery4 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .card4 {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    overflow: auto;
-    width: 200px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .card4:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  }
-  .card4 img {
+}
+.page6-faction-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
-  }
-  .card4 h3 {
-    font-size: 20px;
-    color: #d50000;
-    margin: 10px 0;
-  }
-  .modal4 {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-  }
-  .modal-content4 {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 600px;
-    width: 90%;
-    text-align: left;
-    position: relative;
-  }
-  .modal-content4 img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    max-height: 200px; /* Highlighted Change: This line restricts the height of the image */
-    object-fit: contain; /* Highlighted Change: This line ensures the whole image fits within the given dimensions */
-  }
-  .modal-content4 h3 {
-    font-size: 24px;
-    color: #d50000;
-    margin-top: 10px;
-  }
-  .modal-content4 p {
-    font-size: 18px;
-    color: #333;
-    margin-top: 10px;
-  }
-  .close4 {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #d50000;
-    cursor: pointer;
-  }
-
-  /* Page 5 Styles */
-  .page.page5 {
-    background-color: #ffffff;
-    justify-content: flex-start;
-    padding: 40px 20px 80px;
-    overflow-y: auto;
-    animation: fadeIn 1s ease-in-out;
-  }
-  .blank-space {
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.page6-spacer {
     height: 100vh;
-    width: 100%;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  .pyramid5 {
+}
+
+/* Page 7 Specific Styles */
+.page7 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ffcdd2 50%, #ecf0f1 50%);
+    padding: 40px 20px 80px;
+    animation: fadeIn 1s ease-in-out
+}
+.page7-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.page7 h1, .page7 h2 {
+    color: #8B0000;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+}
+.page7-versus-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+.page7-fighter {
+    width: 45%;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-  }
-  .pyramid-level5 {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.page7-fighter-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin: 0 auto 20px;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page7-fighter-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.page7-fighter h2 {
+    color: #8B0000;
+    margin: 0 0 20px 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+.page7-vs {
+    font-size: 36px;
+    font-weight: bold;
+    color: #8B0000;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50%;
+    align-self: center;
+}
+.page7-stance, .page7-key-aspects {
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    width: 100%;
+}
+.page7-key-aspects {
+    margin-top: 30px;
+}
+.page7-key-aspects h2 {
+    margin-top: 0;
+}
+.page7-show-result-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    padding: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .pyramid-level5:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  }
-  .level-title5 {
-    font-size: 24px;
-    color: #d50000;
-  }
-  .modal5 {
+    transition: background-color 0.3s ease;
+}
+.page7-show-result-btn:hover {
+    background-color: #A52A2A;
+}
+.page7-modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-  }
-  .modal-content5 {
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 600px;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.page7-modal-content {
+    background-color: #f8f9fa;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
     width: 90%;
-    text-align: left;
-    position: relative;
+    max-width: 800px;
+    border-radius: 12px;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    animation: modalFadeIn 0.3s ease-out;
-  }
-  @keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .modal-content5 img {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  .modal-content5 h3 {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: justify;
+}
+.page7-close {
+    color: #aaa;
+    float: right;
     font-size: 28px;
-    color: #d50000;
-    margin-top: 0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.page7-close:hover,
+.page7-close:focus {
+    color: #8B0000;
+    text-decoration: none;
+}
+.page7-modal-content h2 {
+    color: #8B0000;
+    border-bottom: 2px solid #CD5C5C;
+    padding-bottom: 10px;
     margin-bottom: 20px;
+    text-align: center;
+}
+.page7-modal-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.page7-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.page7-card h3 {
+    color: #CD5C5C;
+    margin-top: 0;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.page7-card ul, .page7-card ol {
+    padding-left: 20px;
+    margin-bottom: 0;
+    text-align: left;
+}
+.page7-card li {
+    margin-bottom: 10px;
+}
+.page7-card li:last-child {
+    margin-bottom: 0;
+}
+
+/* Page 8 Specific Styles */
+.page8 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    text-align: left;
+    padding: 40px 20px 80px;
+    animation: fadeIn 1s ease-in-out;
+}
+.page8-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.page8-h1 {
+    color: #d50000;
+    text-align: center;
     border-bottom: 2px solid #d50000;
     padding-bottom: 10px;
-  }
-  .modal-content5 p {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-  .modal-content5 ul {
-    padding-left: 20px;
-    margin-bottom: 15px;
-  }
-  .modal-content5 li {
-    margin-bottom: 8px;
+}
+.page8-timeline {
     position: relative;
-  }
-  .modal-content5 li::before {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.page8-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: #d50000;
+}
+.page8-events-container {
+    width: 45%;
+}
+.page8-image-container {
+    width: 45%;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+}
+.page8-event {
+    padding: 10px 20px;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.page8-event:hover, .page8-event.active {
+    background-color: #ffebee;
+}
+.page8-event-title {
+    font-weight: bold;
+    color: #d50000;
+    display: flex;
+    align-items: center;
+}
+.page8-event-title i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+.page8-event-content {
+    max-height: 0;
+    overflow: auto;
+    transition: max-height 0.5s ease-out;
+}
+.page8-event-content.active {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+.page8-image-card {
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+}
+.page8-image-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+.page8-image-caption {
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
+}
+.page8-profile {
+    background-color: #ffebee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #d50000;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+}
+.page8-h2 {
+    color: #d50000;
+    margin-top: 0;
+    text-align: left;
+}
+.page8-profile ul {
+    padding-left: 20px;
+    text-align: left;
+}
+.page8-profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+/* Page 9 Specific Styles */
+.page9 {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: left;
+    padding: 40px 20px 80px;
+    animation: fadeIn 1s ease-in-out;
+}
+.page9-h1 {
+    color: #d50000;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+.page9-h2 {
+    color: #d50000;
+    text-align: center;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+.page9-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+.page9-figure {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.page9-figure-info {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 0 15px;
+    transition: transform 0.3s ease;
+}
+.page9-figure-info:hover {
+    transform: translateY(-5px);
+}
+.page9-figure-info h3 {
+    color: #d50000;
+    border-bottom: 2px solid #d50000;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.4em;
+    text-align: center;
+}
+.page9-figure-image {
+    width: 100%;
+    height: 200px;
+    background-color: #f0f0f0;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    color: #666;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+}
+.page9-figure-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.page9-toggle-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+.page9-toggle-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.page9-toggle-header {
+    background-color: #d50000;
+    color: #fff;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+}
+.page9-toggle-header::after {
+    content: '\25BC';
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+.page9-toggle-header.active::after {
+    transform: rotate(180deg);
+}
+.page9-toggle-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background-color: #fff;
+}
+.page9-toggle-content.active {
+    max-height: 1000px;
+    padding: 20px;
+}
+.page9-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+.page9-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #d50000;
+}
+.page9-timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+.page9-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #d50000;
+}
+.page9-timeline-item strong {
+    color: #d50000;
+    font-weight: 600;
+}
+.page9-ul {
+    padding-left: 20px;
+    list-style-type: none;
+}
+.page9-li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1.4;
+    text-align: left;
+}
+.page9-li::before {
     content: '•';
     color: #d50000;
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-  }
-  .close5 {
+    font-size: 1.2em;
     position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 28px;
-    color: #d50000;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  .close5:hover {
-    transform: scale(1.1);
-  }
-  /* Scrollbar styles for webkit browsers */
-  .modal-content5::-webkit-scrollbar {
-    width: 8px;
-  }
-  .modal-content5::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  .modal-content5::-webkit-scrollbar-thumb {
-    background: #d50000;
-    border-radius: 4px;
-  }
-  .modal-content5::-webkit-scrollbar-thumb:hover {
-    background: #b71c1c;
-  }
-  .pyramid5 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  .pyramid-level5 {
+    left: 0;
+    top: 0;
+}
+.page9-toggle-content p {
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 0.95em;
+    color: #444;
+}
+.page9-sub-toggle {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.page9-sub-toggle-header {
     background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+    padding: 10px 15px;
     cursor: pointer;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .pyramid-level5:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  }
-  .level-title5 {
-    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page9-sub-toggle-header::after {
+    content: '\25BC';
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+.page9-sub-toggle-header.active::after {
+    transform: rotate(180deg);
+}
+.page9-sub-toggle-content {
+    background-color: #f9f9f9;
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.page9-sub-toggle-content.active {
+    max-height: 500px;
+    padding: 15px;
+}
+.page9-two-column {
+    display: flex;
+    justify-content: space-between;
+}
+.page9-column {
+    flex: 1;
+    padding: 10px;
+}
+.page9-column h4 {
     color: #d50000;
-  }
-  /* New styles for reverse pyramid */
-  .pyramid-level5:nth-child(1) { width: 150%; max-width: 600px; }
-  .pyramid-level5:nth-child(2) { width: 100%; max-width: 500px; }
-  .pyramid-level5:nth-child(3) { width: 50%; max-width: 400px; }
-  .pyramid-level5:nth-child(4) { width: 30%; max-width: 300px; }
+    margin-top: 0;
+    text-align: left;
+}
+.page9-outcome-list {
+    list-style-type: none;
+    padding: 0;
+}
+.page9-outcome-item {
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+.page9-outcome-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.page9-outcome-item::before {
+    content: '►';
+    color: #d50000;
+    margin-right: 10px;
+    font-size: 0.8em;
+}
 
-  /* Page 6 Specific Styles */
-  .page6-body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f4f4f4;
-      text-align: left; /* Default text alignment for the page */
-      animation: fadeIn 1s ease-in-out
-  }
-  .page6-h1, .page6-h2 {
-      color: #d50000;
-      text-align: center;}
-  .page6-card-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-  }
-  .page6-card {
-      background-color: white;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  .page6-card .page6-h2 {
-      color: #d50000;
-      margin-top: 0;
-  }
-  .page6-faction-container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-      gap: 20px;
-  }
-  .page6-faction {
-      width: 48%;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  .page6-faction h3 {
-      color: #d50000;
-      margin-top: 0;
-  }
-  .page6-faction ul, .page6-card ul {
-      padding-left: 20px;
-  }
-  #page6-toggle-factions {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #d50000;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-  }
-  .page6-faction-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 15px;
-  }
-  .page6-spacer {
-      height: 100vh;
-  }
-
-  /* Page 7 Specific Styles */
-  .page7 {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(to right, #ffcdd2 50%, #ecf0f1 50%);
-      padding: 40px 20px 80px;
-      animation: fadeIn 1s ease-in-out
-  }
-  .page7-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-  }
-  .page7 h1, .page7 h2 {
-      color: #8B0000;
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 10px;
-      border-radius: 8px;
-  }
-  .page7-versus-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: 30px;
-  }
-  .page7-fighter {
-      width: 45%;
-      text-align: center;
-      padding: 20px;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-  .page7-fighter-image {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background-color: #ddd;
-      margin: 0 auto 20px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  .page7-fighter-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-  }
-  .page7-fighter h2 {
-      color: #8B0000;
-      margin: 0 0 20px 0;
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-  }
-  .page7-vs {
-      font-size: 36px;
-      font-weight: bold;
-      color: #8B0000;
-      background-color: white;
-      padding: 10px;
-      border-radius: 50%;
-      align-self: center;
-  }
-  .page7-stance, .page7-key-aspects {
-      text-align: left;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 15px;
-      width: 100%;
-  }
-  .page7-key-aspects {
-      margin-top: 30px;
-  }
-  .page7-key-aspects h2 {
-      margin-top: 0;
-  }
-  .page7-show-result-btn {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #8B0000;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  .page7-show-result-btn:hover {
-      background-color: #A52A2A;
-  }
-  .page7-modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-  }
-  .page7-modal-content {
-      background-color: #f8f9fa;
-      margin: 5% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 800px;
-      border-radius: 12px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      text-align: justify;
-  }
-  .page7-close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s ease;
-  }
-  .page7-close:hover,
-  .page7-close:focus {
-      color: #8B0000;
-      text-decoration: none;
-  }
-  .page7-modal-content h2 {
-      color: #8B0000;
-      border-bottom: 2px solid #CD5C5C;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      text-align: center;
-  }
-  .page7-modal-image {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .page7-card {
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-  }
-  .page7-card h3 {
-      color: #CD5C5C;
-      margin-top: 0;
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 10px;
-      text-align: center;
-  }
-  .page7-card ul, .page7-card ol {
-      padding-left: 20px;
-      margin-bottom: 0;
-      text-align: left;
-  }
-  .page7-card li {
-      margin-bottom: 10px;
-  }
-  .page7-card li:last-child {
-      margin-bottom: 0;
-  }
-
-  /* Page 8 Specific Styles */
-  .page8 {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f4f4f4;
-      margin: 0;
-      text-align: left;
-      padding: 40px 20px 80px;
-      animation: fadeIn 1s ease-in-out;
-  }
-  .page8-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  .page8-h1 {
-      color: #d50000;
-      text-align: center;
-      border-bottom: 2px solid #d50000;
-      padding-bottom: 10px;
-  }
-  .page8-timeline {
-      position: relative;
-      padding: 20px 0;
-      display: flex;
-      justify-content: space-between;
-  }
-  .page8-timeline::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background: #d50000;
-  }
-  .page8-events-container {
-      width: 45%;
-  }
-  .page8-image-container {
-      width: 45%;
-      position: sticky;
-      top: 20px;
-      align-self: flex-start;
-  }
-  .page8-event {
-      padding: 10px 20px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  .page8-event:hover, .page8-event.active {
-      background-color: #ffebee;
-  }
-  .page8-event-title {
-      font-weight: bold;
-      color: #d50000;
-      display: flex;
-      align-items: center;
-  }
-  .page8-event-title i {
-      margin-right: 10px;
-      font-size: 1.2em;
-  }
-  .page8-event-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-out;
-  }
-  .page8-event-content.active {
-      max-height: 500px;
-      transition: max-height 0.5s ease-in;
-  }
-  .page8-image-card {
-      background-color: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 10px;
-      text-align: center;
-  }
-  .page8-image-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-  }
-  .page8-image-caption {
-      margin-top: 10px;
-      font-style: italic;
-      color: #666;
-  }
-  .page8-profile {
-      background-color: #ffebee;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border-left: 4px solid #d50000;
-      display: flex;
-      align-items: flex-start;
-      text-align: left;
-  }
-  .page8-h2 {
-      color: #d50000;
-      margin-top: 0;
-      text-align: left;
-  }
-  .page8-profile ul {
-      padding-left: 20px;
-      text-align: left;
-  }
-  .page8-profile-image {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-right: 20px;
-  }
-  
 </style>
 
 <!-- HTML Content -->
@@ -1568,6 +1817,143 @@
   </div>
 </div>
 
+<!-- Page 9 HTML -->
+<div class="page page9" id="page9">
+        <div class="page9-container">
+        <h1 class="page9-h1">Vietnam Communist Party Factional Struggle #2</h1>
+        <h2 class="page9-h2">Nguyen Tan Dung vs. Nguyen Phu Trong</h2>
+
+        <div class="page9-figure">
+            <div class="page9-figure-info">
+                <div class="page9-figure-image">
+                    <img src="NguyenTanDung2.jpg" alt="Nguyen Tan Dung;">
+                </div>
+                <h3>Nguyen Tan Dung</h3>
+                <ul class="page9-ul">
+                    <li class="page9-li">Prime Minister from 2006 to 2016</li>
+                    <li class="page9-li">Associated with a more reformist, pro-business approach</li>
+                    <li class="page9-li">Known for promoting economic growth and international integration</li>
+                </ul>
+            </div>
+            <div class="page9-figure-info">
+                <div class="page9-figure-image">
+                    <img src="NguyenPhuTrong2.webp" alt="Nguyen Phu Trong;">
+                </div>
+                <h3>Nguyen Phu Trong</h3>
+                <ul class="page9-ul">
+                    <li class="page9-li">General Secretary of the VCP since 2011</li>
+                    <li class="page9-li">Seen as more conservative and ideologically orthodox</li>
+                    <li class="page9-li">Emphasized party discipline and anti-corruption efforts</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page9-toggle-card">
+            <div class="page9-toggle-header" onclick="togglePage9Content(this)">Main Points of Contention</div>
+            <div class="page9-toggle-content">
+                <div class="page9-sub-toggle">
+                    <div class="page9-sub-toggle-header" onclick="togglePage9SubContent(this)">Economic Policy</div>
+                    <div class="page9-sub-toggle-content">
+                        <div class="page9-two-column">
+                            <div class="page9-column">
+                                <h4>Dung's Position</h4>
+                                <p>Favored rapid economic liberalization and market-oriented reforms. Promoted faster integration into the global economy and encouraged foreign investment.</p>
+                            </div>
+                            <div class="page9-column">
+                                <h4>Trong's Position</h4>
+                                <p>Advocated for a more cautious approach, emphasizing state control and socialist principles in economic development. Stressed the need to maintain the party's guiding role in the economy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page9-sub-toggle">
+                    <div class="page9-sub-toggle-header" onclick="togglePage9SubContent(this)">Corruption</div>
+                    <div class="page9-sub-toggle-content">
+                        <div class="page9-two-column">
+                            <div class="page9-column">
+                                <h4>Dung's Approach</h4>
+                                <p>While publicly supporting anti-corruption efforts, Dung was accused of turning a blind eye to corruption within his networks. His administration was associated with several high-profile corruption scandals.</p>
+                            </div>
+                            <div class="page9-column">
+                                <h4>Trong's Campaign</h4>
+                                <p>Launched an extensive anti-corruption campaign that often targeted Dung's allies and associates. Emphasized the need to root out corruption to maintain the party's legitimacy and public trust.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page9-sub-toggle">
+                    <div class="page9-sub-toggle-header" onclick="togglePage9SubContent(this)">Foreign Policy</div>
+                    <div class="page9-sub-toggle-content">
+                        <div class="page9-two-column">
+                            <div class="page9-column">
+                                <h4>Dung's Strategy</h4>
+                                <p>Pushed for closer ties with the West, particularly the United States. Sought to balance against China's influence by strengthening relationships with other powers.</p>
+                            </div>
+                            <div class="page9-column">
+                                <h4>Trong's Approach</h4>
+                                <p>Maintained a more balanced approach between China and the West, emphasizing Vietnam's traditional relationships. Cautious about over-reliance on any single foreign power.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page9-sub-toggle">
+                    <div class="page9-sub-toggle-header" onclick="togglePage9SubContent(this)">Party Ideology</div>
+                    <div class="page9-sub-toggle-content">
+                        <div class="page9-two-column">
+                            <div class="page9-column">
+                                <h4>Dung's Perspective</h4>
+                                <p>Seen as more pragmatic and willing to adapt ideological stances to facilitate economic growth. Prioritized economic development over strict adherence to traditional ideology.</p>
+                            </div>
+                            <div class="page9-column">
+                                <h4>Trong's Stance</h4>
+                                <p>Emphasized adherence to traditional Marxist-Leninist principles and the primacy of the Communist Party. Stressed the importance of maintaining ideological purity while pursuing development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page9-toggle-card">
+            <div class="page9-toggle-header" onclick="togglePage9Content(this)">Timeline of the Conflict</div>
+            <div class="page9-toggle-content">
+                <div class="page9-timeline">
+                    <div class="page9-timeline-item">
+                        <strong>2012-2015:</strong> Growing tension between the two leaders becomes apparent
+                    </div>
+                    <div class="page9-timeline-item">
+                        <strong>2016:</strong> 12th National Party Congress becomes a battleground for leadership succession
+                    </div>
+                    <div class="page9-timeline-item">
+                        <strong>January 2016:</strong> Dung fails in his bid to become General Secretary, effectively ending his political career
+                    </div>
+                    <div class="page9-timeline-item">
+                        <strong>April 2016:</strong> Dung steps down as Prime Minister
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page9-toggle-card">
+            <div class="page9-toggle-header" onclick="togglePage9Content(this)">Outcome</div>
+            <div class="page9-toggle-content">
+                <p>The resolution of this factional struggle had significant implications for Vietnam's political landscape:</p>
+                <ul class="page9-outcome-list">
+                    <li class="page9-outcome-item">Trong emerges victorious, consolidating his power as General Secretary</li>
+                    <li class="page9-outcome-item">Dung retires from politics, marking the end of his influence in the party</li>
+                    <li class="page9-outcome-item">The party reaffirms its commitment to collective leadership and ideological orthodoxy</li>
+                    <li class="page9-outcome-item">A renewed focus on party discipline and anti-corruption efforts becomes evident</li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="showPage('page8')">Back</button>
+            <button onclick="showPage('page10')">Next</button>
+        </div>
+    </div>
+</div>
+
+
 <!-- JavaScript -->
 <script>
   function showPage(pageId) {
@@ -1669,5 +2055,15 @@
 
       imageElement.src = imageSources[imageNumber - 1];
       captionElement.textContent = imageCaptions[imageNumber - 1];
+  }
+  function togglePage9Content(header) {
+      header.classList.toggle('active');
+      var content = header.nextElementSibling;
+      content.classList.toggle('active');
+  }
+  function togglePage9SubContent(header) {
+      header.classList.toggle('active');
+      var content = header.nextElementSibling;
+      content.classList.toggle('active');
   }
 </script>
