@@ -1147,6 +1147,115 @@ button:active {
     font-size: 0.8em;
 }
 
+/* Page 10 Specific Styles */
+.page10 {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: left; /* Default alignment for the page */
+    padding: 40px 20px 80px;
+    animation: fadeIn 1s ease-in-out;}
+.page10-h1 {
+    color: #d50000;
+    text-align: center;
+}
+.page10-section {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.page10-section .page10-h2 {
+    color: #d50000;
+    border-bottom: 2px solid #d50000;
+    padding-bottom: 10px;
+    text-align: left;
+}
+.page10-section p {
+    text-align: justify; /* Justified text for paragraphs */
+}
+.page10-section ul, .page10-section ol {
+    text-align: left; /* Left-aligned lists */
+    padding-left: 20px; /* Add some padding for list items */
+}
+.page10-pillars, .page10-roles {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center; /* Center-aligned text for pillars and roles */
+}
+.page10-pillar, .page10-role {
+    background-color: #ffcdd2;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+.page10-pillar img, .page10-role img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.page10-pillar p, .page10-role p {
+    color: #d50000;
+    font-weight: bold;
+    margin: 0;
+}
+.page10-flex-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.page10-flex-item {
+    flex: 1;
+    min-width: 45%;
+}
+.page10-flex-item h3 {
+    text-align: center; /* Center-aligned subheadings */
+}
+@media (max-width: 768px) {
+    .page10-flex-container {
+        flex-direction: column;
+    }
+}
+.page10-toggle-btn {
+    background-color: #d50000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px auto; /* Centered button */
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px; /* Fixed width for consistency */
+    align: left;
+}
+.page10-toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+.page10-toggle-content.show {
+    max-height: 2000px; /* Adjust this value based on your content */
+    transition: max-height 0.5s ease-in;
+}
+.page10-overview-img {
+    float: right;
+    margin: 0 0 10px 10px;
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
 </style>
 
 <!-- HTML Content -->
@@ -1953,117 +2062,228 @@ button:active {
     </div>
 </div>
 
+<!-- Page 10 HTML -->
+<div class="page page10" id="page10">
+    <h1 class="page10-h1">Vietnam Communist Party: Relationship with Government</h1>
+
+    <div class="page10-section">
+        <h2 class="page10-h2">Overview</h2>
+        <img src="Page 10 images/party-state flag.png" alt="Overview" class="page10-overview-img">
+        <p>The Vietnam Communist Party (VCP) and the government are closely intertwined. The party maintains a leading role in all aspects of governance, as enshrined in the country's constitution.</p>
+    </div>
+
+    <div class="page10-section">
+        <h2 class="page10-h2">Constitutional Basis</h2>
+        <ul>
+            <li>Article 4 of Vietnam's constitution establishes the VCP as the leading force in state and society</li>
+            <li>The party's leadership is described as fundamental to the political system</li>
+        </ul>
+    </div>
+
+    <div class="page10-section">
+        <h2 class="page10-h2">Overlap in Leadership</h2>
+        <button class="page10-toggle-btn" onclick="toggleContent('overlap')">Show/Hide Details</button>
+        <div id="overlap" class="page10-toggle-content">
+            <p>Top government positions are held by high-ranking party members</p>
+            <h3>The "Four Pillars" of Leadership:</h3>
+            <div class="page10-pillars">
+                <div class="page10-pillar">
+                    <img src="Nguyễn_Phú_Trọng_20230910.jpg" alt="General Secretary">
+                    <p>General Secretary of the VCP</p>
+                </div>
+                <div class="page10-pillar">
+                    <img src="Page 10 images/Mr._To_Lam.jpg" alt="President">
+                    <p>President (head of state)</p>
+                </div>
+                <div class="page10-pillar">
+                    <img src="Page 10 images/PM_VN.jpeg" alt="Prime Minister">
+                    <p>Prime Minister (head of government)</p>
+                </div>
+                <div class="page10-pillar">
+                    <img src="Page 10 images/Tranthanhman2023.jpg" alt="Chairperson">
+                    <p>Chairperson of the National Assembly</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page10-section">
+        <h2 class="page10-h2">Decision-making Process</h2>
+        <button class="page10-toggle-btn" onclick="toggleContent('decision')">Show/Hide Details</button>
+        <ul id="decision" class="page10-toggle-content">
+            <li>Major policy decisions are first made within party organs (Politburo, Central Committee)</li>
+            <li>Government then implements these decisions through state apparatus</li>
+        </ul>
+    </div>
+
+    <div class="page10-section">
+        <h2 class="page10-h2">Party and Government Roles</h2>
+        <button class="page10-toggle-btn" onclick="toggleContent('roles')">Show/Hide Details</button>
+        <div id="roles" class="page10-toggle-content">
+            <div class="page10-flex-container">
+                <div class="page10-flex-item">
+                    <h3>Party's Role in Government</h3>
+                    <div class="page10-roles">
+                        <div class="page10-role">
+                            <img src="Communist_Party_of_Vietnam_flag_logo.svg" alt="Party Role">
+                            <p>Party's Influence</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Sets overall policy direction</li>
+                        <li>Approves candidates for key government positions</li>
+                        <li>Oversees government performance through party channels</li>
+                        <li>Maintains parallel party committees at all levels of government</li>
+                    </ul>
+                </div>
+                <div class="page10-flex-item">
+                    <h3>Government's Role</h3>
+                    <div class="page10-roles">
+                        <div class="page10-role">
+                            <img src="Page 10 images/VN_GOV.png" alt="Government Role">
+                            <p>Government Functions</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Implements party policies and directives</li>
+                        <li>Manages day-to-day administration of the country</li>
+                        <li>Proposes laws and regulations (subject to party approval)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page10-section">
+        <h2 class="page10-h2">Recent Trends</h2>
+        <button class="page10-toggle-btn" onclick="toggleContent('trends')">Show/Hide Details</button>
+        <ol id="trends" class="page10-toggle-content">
+            <li>Increased emphasis on technocratic expertise in government</li>
+            <li>Efforts to streamline government operations while maintaining party oversight</li>
+            <li>Continued focus on maintaining the party's central role in governance</li>
+        </ol>
+    </div>
+    <div class="nav-buttons">
+        <button onclick="showPage('page9')">Back</button>
+        <button onclick="showPage('page11')">Next</button>
+    </div>
+</div>
+
 
 <!-- JavaScript -->
 <script>
-  function showPage(pageId) {
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
+function showPage(pageId) {
+// Hide all pages
+document.querySelectorAll('.page').forEach(page => {
+  page.classList.remove('active');
+});
 
-    // Show the selected page
-    document.getElementById(pageId).classList.add('active');
-  }
-  function toggleDetails(element, imageUrl) {
-    const ul = element.querySelector('ul');
-    const isActive = ul.classList.contains('active');
+// Show the selected page
+document.getElementById(pageId).classList.add('active');
+}
+function toggleDetails(element, imageUrl) {
+const ul = element.querySelector('ul');
+const isActive = ul.classList.contains('active');
 
-    // Reset all other elements
-    document.querySelectorAll('.content ul').forEach(ul => ul.classList.remove('active'));
-    document.querySelectorAll('.timeline3-content').forEach(content => content.classList.remove('active'));
+// Reset all other elements
+document.querySelectorAll('.content ul').forEach(ul => ul.classList.remove('active'));
+document.querySelectorAll('.timeline3-content').forEach(content => content.classList.remove('active'));
 
-    if (!isActive) {
-      ul.classList.add('active');
-      element.classList.add('active');
-      element.style.backgroundImage = `url(${imageUrl})`;
-    } else {
-      ul.classList.remove('active');
-      element.classList.remove('active');
-      element.style.backgroundImage = '';
-    }
-  }
-  function showPage(pageId) {
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
+if (!isActive) {
+  ul.classList.add('active');
+  element.classList.add('active');
+  element.style.backgroundImage = `url(${imageUrl})`;
+} else {
+  ul.classList.remove('active');
+  element.classList.remove('active');
+  element.style.backgroundImage = '';
+}
+}
+function showPage(pageId) {
+// Hide all pages
+document.querySelectorAll('.page').forEach(page => {
+  page.classList.remove('active');
+});
 
-    // Show the selected page
-    document.getElementById(pageId).classList.add('active');
+// Show the selected page
+document.getElementById(pageId).classList.add('active');
+}
+function openModal(modalId) {
+document.getElementById('modal-' + modalId).style.display = 'flex';
+}
+function closeModal(modalId) {
+document.getElementById('modal-' + modalId).style.display = 'none';
+}
+document.getElementById('page6-toggle-factions').addEventListener('click', function() {
+  var factionContainer = document.querySelector('.page6-faction-container');
+  if (factionContainer.style.display === 'none') {
+      factionContainer.style.display = 'flex';
+      this.textContent = 'Hide Factions';
+  } else {
+      factionContainer.style.display = 'none';
+      this.textContent = 'Compare Factions';
   }
-  function openModal(modalId) {
-    document.getElementById('modal-' + modalId).style.display = 'flex';
+});
+function openVCPStruggleModal() {
+  document.getElementById("vcpStruggleResultModal").style.display = "block";
+}
+function closeVCPStruggleModal() {
+  document.getElementById("vcpStruggleResultModal").style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == document.getElementById("vcpStruggleResultModal")) {
+      closeVCPStruggleModal();
   }
-  function closeModal(modalId) {
-    document.getElementById('modal-' + modalId).style.display = 'none';
-  }
-  document.getElementById('page6-toggle-factions').addEventListener('click', function() {
-      var factionContainer = document.querySelector('.page6-faction-container');
-      if (factionContainer.style.display === 'none') {
-          factionContainer.style.display = 'flex';
-          this.textContent = 'Hide Factions';
-      } else {
-          factionContainer.style.display = 'none';
-          this.textContent = 'Compare Factions';
-      }
+}
+function toggleContent(element) {
+  const allEvents = document.querySelectorAll('.page8-event');
+  allEvents.forEach(event => {
+      event.classList.remove('active');
+      event.querySelector('.page8-event-content').classList.remove('active');
   });
-  function openVCPStruggleModal() {
-      document.getElementById("vcpStruggleResultModal").style.display = "block";
-  }
-  function closeVCPStruggleModal() {
-      document.getElementById("vcpStruggleResultModal").style.display = "none";
-  }
-  window.onclick = function(event) {
-      if (event.target == document.getElementById("vcpStruggleResultModal")) {
-          closeVCPStruggleModal();
-      }
-  }
-  function toggleContent(element) {
-      const allEvents = document.querySelectorAll('.page8-event');
-      allEvents.forEach(event => {
-          event.classList.remove('active');
-          event.querySelector('.page8-event-content').classList.remove('active');
-      });
 
-      element.classList.add('active');
-      const content = element.querySelector('.page8-event-content');
-      content.classList.add('active');
-  }
-  function updateImage(imageNumber) {
-      const imageElement = document.getElementById('eventImage');
-      const captionElement = document.getElementById('imageCaption');
+  element.classList.add('active');
+  const content = element.querySelector('.page8-event-content');
+  content.classList.add('active');
+}
+function updateImage(imageNumber) {
+  const imageElement = document.getElementById('eventImage');
+  const captionElement = document.getElementById('imageCaption');
 
-      // In a real scenario, you would replace these with actual image URLs and captions
-      const imageSources = [
-          "NguyenTanDung.jpg",
-          "Vietnam2007.jpg",
-          "Ba_Dinh_Hall_1462359227_71b04ee08a.jpg",
-          "VN_faction.webp",
-          "VN_US_CH.webp",
-          "nguyen-phu-trong-nguyen-tan-dung-2.jpeg"
-      ];
+  // In a real scenario, you would replace these with actual image URLs and captions
+  const imageSources = [
+      "NguyenTanDung.jpg",
+      "Vietnam2007.jpg",
+      "Ba_Dinh_Hall_1462359227_71b04ee08a.jpg",
+      "VN_faction.webp",
+      "VN_US_CH.webp",
+      "nguyen-phu-trong-nguyen-tan-dung-2.jpeg"
+  ];
 
-      const imageCaptions = [
-          "Southern leaders gaining influence in Vietnamese politics (Nguyen Tan Dung in the picture)",
-          "Implementation of market-oriented economic policies",
-          "Gradual political reforms and intra-party democracy",
-          "Balancing act between different factions within the party",
-          "Vietnam's evolving foreign policy and international relations",
-          "Outcomes and impacts of the reforms during this period"
-      ];
+  const imageCaptions = [
+      "Southern leaders gaining influence in Vietnamese politics (Nguyen Tan Dung in the picture)",
+      "Implementation of market-oriented economic policies",
+      "Gradual political reforms and intra-party democracy",
+      "Balancing act between different factions within the party",
+      "Vietnam's evolving foreign policy and international relations",
+      "Outcomes and impacts of the reforms during this period"
+  ];
 
-      imageElement.src = imageSources[imageNumber - 1];
-      captionElement.textContent = imageCaptions[imageNumber - 1];
-  }
-  function togglePage9Content(header) {
-      header.classList.toggle('active');
-      var content = header.nextElementSibling;
-      content.classList.toggle('active');
-  }
-  function togglePage9SubContent(header) {
-      header.classList.toggle('active');
-      var content = header.nextElementSibling;
-      content.classList.toggle('active');
-  }
+  imageElement.src = imageSources[imageNumber - 1];
+  captionElement.textContent = imageCaptions[imageNumber - 1];
+}
+function togglePage9Content(header) {
+  header.classList.toggle('active');
+  var content = header.nextElementSibling;
+  content.classList.toggle('active');
+}
+function togglePage9SubContent(header) {
+  header.classList.toggle('active');
+  var content = header.nextElementSibling;
+  content.classList.toggle('active');
+}
+function toggleContent(id) {
+        var content = document.getElementById(id);
+        content.classList.toggle('show');
+    }
 </script>
