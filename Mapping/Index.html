@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASEAN Energy Efficiency Governance Structures</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+      margin: 0;
+      padding: 0;
+      color: #343a40;
+    }
+
+    .governance-map {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity here */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .governance-map h2 {
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .asean-logo {
+      width: 100px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .country-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .country-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .country-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .country-header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background-color: #28a745;
+      color: #ffffff;
+    }
+
+    .country-header img {
+      width: 50px;
+      height: auto;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    .country-header h3 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    .governance-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .governance-list li {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #ecf0f1;
+      transition: background-color 0.3s ease;
+    }
+
+    .governance-list li:last-child {
+      border-bottom: none;
+    }
+
+    .governance-list li:hover {
+      background-color: #f8f9fa;
+    }
+
+    .governance-list li i {
+      margin-right: 15px;
+      color: #28a745;
+      width: 25px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    .governance-list li span {
+      font-size: 1em;
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <div class="governance-map">
+    <h2>ASEAN Energy Efficiency Governance Structures</h2>
+    
+    <div class="country-grid">
+      <div class="country-card">
+        <div class="country-header">
+          <img src="https://flagcdn.com/w80/vn.png" alt="Vietnam flag">
+          <h3>Vietnam</h3>
+        </div>
+        <ul class="governance-list">
+          <li><i class="fas fa-building"></i><span>Ministry of Construction (MOC)</span></li>
+          <li><i class="fas fa-industry"></i><span>Ministry of Industry and Trade (MOIT)</span></li>
+          <li><i class="fas fa-leaf"></i><span>Ministry of Natural Resources and Environment (MONRE)</span></li>
+          <li><i class="fas fa-flask"></i><span>Ministry of Science and Technology (MOST)</span></li>
+          <li><i class="fas fa-tree"></i><span>Vietnam Green Building Council (VGBC)</span></li>
+          <li><i class="fas fa-city"></i><span>Local Departments of Construction</span></li>
+        </ul>
+      </div>
+
+      <div class="country-card">
+        <div class="country-header">
+          <img src="https://flagcdn.com/w80/th.png" alt="Thailand flag">
+          <h3>Thailand</h3>
+        </div>
+        <ul class="governance-list">
+          <li><i class="fas fa-solar-panel"></i><span>Department of Alternative Energy Development and Efficiency (DEDE)</span></li>
+          <li><i class="fas fa-drafting-compass"></i><span>Department of Public Works and Town and Country Planning (DPT)</span></li>
+          <li><i class="fas fa-users"></i><span>Local Administration Organizations (LAOs)</span></li>
+        </ul>
+      </div>
+
+      <div class="country-card">
+        <div class="country-header">
+          <img src="https://flagcdn.com/w80/my.png" alt="Malaysia flag">
+          <h3>Malaysia</h3>
+        </div>
+        <ul class="governance-list">
+          <li><i class="fas fa-chart-line"></i><span>Energy Division under Ministry of Economy</span></li>
+          <li><i class="fas fa-plug"></i><span>Suruhanjaya Tenaga Energy Commission</span></li>
+          <li><i class="fas fa-atom"></i><span>Ministry of Science, Technology and Innovation (MOSTI)</span></li>
+          <li><i class="fas fa-seedling"></i><span>Ministry of Natural Resources and Environmental Sustainability (NRES)</span></li>
+          <li><i class="fas fa-leaf"></i><span>Malaysian Green Technology and Climate Change Corporation (MGTC)</span></li>
+          <li><i class="fas fa-thermometer-half"></i><span>Joint Committee on Climate Change (JC3)</span></li>
+          <li><i class="fas fa-hard-hat"></i><span>Public Works Department</span></li>
+          <li><i class="fas fa-tree"></i><span>Malaysia Green Building Council</span></li>
+        </ul>
+      </div>
+
+      <div class="country-card">
+        <div class="country-header">
+          <img src="https://flagcdn.com/w80/id.png" alt="Indonesia flag">
+          <h3>Indonesia</h3>
+        </div>
+        <ul class="governance-list">
+          <li><i class="fas fa-solar-panel"></i><span>EBTKE (Directorate General of New, Renewable Energy, and Energy Conservation)</span></li>
+          <li><i class="fas fa-home"></i><span>Ministry of Public Works and Housing (MPWH)</span></li>
+          <li><i class="fas fa-landmark"></i><span>Provincial Government</span></li>
+          <li><i class="fas fa-clipboard-check"></i><span>National Standard Organisations (BSN)</span></li>
+          <li><i class="fas fa-leaf"></i><span>Green Building Council of Indonesia</span></li>
+        </ul>
+      </div>
+
+      <div class="country-card">
+        <div class="country-header">
+          <img src="https://flagcdn.com/w80/sg.png" alt="Singapore flag">
+          <h3>Singapore</h3>
+        </div>
+        <ul class="governance-list">
+          <li><i class="fas fa-building"></i><span>Building and Construction Authority (BCA)</span></li>
+          <li><i class="fas fa-leaf"></i><span>National Environment Agency (NEA)</span></li>
+          <li><i class="fas fa-bolt"></i><span>Energy Market Authority (EMA)</span></li>
+          <li><i class="fas fa-home"></i><span>Housing Development Board (HDB)</span></li>
+          <li><i class="fas fa-tree"></i><span>Singapore Green Building Council (SGBC)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
