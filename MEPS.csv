@@ -1,0 +1,32 @@
+Country,Technology,Start,End,MEPS
+Brunei,,0,7.1,2.9
+Cambodia,,0,4,3.5
+Cambodia,,4,8,3.3
+Indonesia,,0,7.9,3.4
+Malaysia,,0,4.5,3.1
+Malaysia,,4.5,7.1,2.9
+Myanmar,,0,5.5,3.08
+Myanmar,,5.5,12,2.89
+Philippines,,0,4.5,3.32
+Philippines,,4.5,10,3.7
+Philippines,,10,14,3.7
+Singapore,Single-Split Inverter,0,14,6.1
+Singapore,Single-Split Non-Inverter,0,14,6.1
+Singapore,Multi-Split Inverter,0,14,6.86
+Singapore,Multi-Split Non-Inverter,0,14,6.86
+Thailand,Fixed Speed,0,8,3.19
+Thailand,Fixed Speed,8,12,3.15
+Thailand,Fixed Speed,12,18,2.68
+Thailand,Inverter,0,8,3.9
+Thailand,Inverter,8,12,3.46
+Thailand,Inverter,12,18,3.46
+Vietnam,Unitary,0,12,3.33
+Vietnam,Split,0,4.5,3.69
+Vietnam,Split,4.5,7,3.57
+Vietnam,Split,7,12,3.33
+Lao PDR,Non-Inverter,0,3.52,3.08
+Lao PDR,Non-Inverter,3.52,8,3.03
+Lao PDR,Non-Inverter,8,12,2.97
+Lao PDR,Inverter,0,3.52,3.4
+Lao PDR,Inverter,3.52,8,3.3
+Lao PDR,Inverter,8,12,3.2

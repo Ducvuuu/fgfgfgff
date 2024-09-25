@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASEAN Air Conditioner MEPS Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+        .chart-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .chart-container:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .tooltip {
+            position: absolute;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 8px;
+            pointer-events: none;
+            font-size: 14px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+        .axis-label {
+            font-size: 14px;
+            fill: #34495e;
+            font-weight: 500;
+        }
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            fill: #2c3e50;
+        }
+        .subtitle {
+            font-size: 20px;
+            fill: #34495e;
+            font-weight: 400;
+        }
+        .emoji {
+            font-family: 'Noto Color Emoji', sans-serif;
+        }
+        #buttons {
+            margin-bottom: 20px;
+        }
+        button {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 24px;
+            margin: 0 10px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .tick line {
+            stroke: #bdc3c7;
+        }
+        .domain {
+            stroke: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div id="buttons">
+        <button id="fullView">Full View</button>
+        <button id="simplifiedView">Simplified View</button>
+    </div>
+    <div id="chart" class="chart-container"></div>
+
+    <script>
+        const countryFlags = {
+            "Brunei": "🇧🇳",
+            "Cambodia": "🇰🇭",
+            "Indonesia": "🇮🇩",
+            "Lao PDR": "🇱🇦",
+            "Malaysia": "🇲🇾",
+            "Myanmar": "🇲🇲",
+            "Philippines": "🇵🇭",
+            "Singapore": "🇸🇬",
+            "Thailand": "🇹🇭",
+            "Vietnam": "🇻🇳"
+        };
+
+        const margin = {top: 80, right: 200, bottom: 80, left: 260};
+        const width = 1400 - margin.left - margin.right;
+        const height = 700 - margin.top - margin.bottom;
+
+        let svg, x, y, colorScale, data;
+
+        function createChart(chartData) {
+            d3.select("#chart").select("svg").remove();
+
+            svg = d3.select("#chart")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            x = d3.scaleLinear()
+                .range([0, width])
+                .domain([0, d3.max(chartData, d => d.End)]);
+
+            y = d3.scaleBand()
+                .range([height, 0])
+                .domain(chartData.map(d => d.Country + (d.Technology ? ` (${d.Technology})` : "")))
+                .padding(0.2);
+
+            const nonSingaporeData = chartData.filter(d => d.Country !== "Singapore");
+            colorScale = d3.scaleSequential()
+                .domain([d3.min(nonSingaporeData, d => d.MEPS), d3.max(nonSingaporeData, d => d.MEPS)])
+                .interpolator(d3.interpolateHcl("#fc8d62", "#66c2a5"));
+
+            drawChart(chartData);
+        }
+
+        function drawChart(chartData) {
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("fill", "#f8f9fa");
+
+            svg.append("g")
+                .attr("class", "grid")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x)
+                    .ticks(10)
+                    .tickSize(-height)
+                    .tickFormat("")
+                )
+                .call(g => g.select(".domain").remove())
+                .call(g => g.selectAll(".tick line")
+                    .attr("stroke", "#e0e0e0")
+                    .attr("stroke-dasharray", "2,2")
+                );
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x).ticks(10))
+                .selectAll("text")
+                .style("font-size", "12px")
+                .style("fill", "#34495e");
+
+            svg.append("g")
+                .call(d3.axisLeft(y))
+                .selectAll("text")
+                .style("font-size", "12px")
+                .style("fill", "#34495e")
+                .each(function(d) {
+                    const country = d.split(" (")[0];
+                    const technology = d.includes("(") ? ` (${d.split(" (")[1]}` : "";
+                    d3.select(this).html(`<tspan class="emoji">${countryFlags[country]}</tspan> ${country}${technology}`);
+                });
+
+            const tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+            svg.selectAll("rect.bar")
+                .data(chartData)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.Start))
+                .attr("y", d => y(d.Country + (d.Technology ? ` (${d.Technology})` : "")))
+                .attr("width", d => x(d.End) - x(d.Start))
+                .attr("height", y.bandwidth())
+                .style("fill", d => {
+                    if (d.Country === "Singapore") {
+                        return d.MEPS === 6.86 ? "#3182bd" : "#6baed6";
+                    }
+                    return colorScale(d.MEPS);
+                })
+                .style("stroke-width", 1)
+                .style("stroke", "white")
+                .on("mouseover", function(event, d) {
+                    d3.select(this)
+                        .style("stroke", "#333")
+                        .style("opacity", 0.8);
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", 1);
+                    tooltip.html(`<strong><span class="emoji">${countryFlags[d.Country]}</span> ${d.Country}</strong><br>` +
+                                 `${d.Technology ? `Technology: ${d.Technology}<br>` : ""}` +
+                                 `Range: ${d.Start} - ${d.End} kW<br>MEPS: ${d.MEPS.toFixed(2)}`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this)
+                        .style("stroke", "white")
+                        .style("opacity", 1);
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+
+            svg.append("text")
+                .attr("class", "title")
+                .attr("x", width / 2)
+                .attr("y", -margin.top / 2)
+                .attr("text-anchor", "middle")
+                .text("Minimum Energy Performance Standards (MEPS)");
+
+            svg.append("text")
+                .attr("class", "subtitle")
+                .attr("x", width / 2)
+                .attr("y", -margin.top / 2 + 35)
+                .attr("text-anchor", "middle")
+                .text("for Air Conditioners in ASEAN Countries");
+
+            const legendWidth = 30;
+            const legendHeight = height;
+            const legendScale = d3.scaleLinear()
+                .domain(colorScale.domain())
+                .range([legendHeight, 0]);
+
+            const legend = svg.append("g")
+                .attr("transform", `translate(${width + 60}, 0)`);
+
+            const legendAxis = d3.axisRight(legendScale)
+                .ticks(5)
+                .tickFormat(d3.format(".1f"));
+
+            legend.append("g")
+                .call(legendAxis)
+                .attr("transform", `translate(${legendWidth}, 0)`)
+                .selectAll("text")
+                .style("font-size", "12px")
+                .style("fill", "#34495e");
+
+            const defs = svg.append("defs");
+            const linearGradient = defs.append("linearGradient")
+                .attr("id", "linear-gradient")
+                .attr("x1", "0%")
+                .attr("y1", "100%")
+                .attr("x2", "0%")
+                .attr("y2", "0%");
+
+            linearGradient.selectAll("stop")
+                .data(d3.range(0, 1.1, 0.1).map(t => ({offset: `${t*100}%`, color: colorScale(d3.interpolateNumber(colorScale.domain()[0], colorScale.domain()[1])(t))})))
+                .enter().append("stop")
+                .attr("offset", d => d.offset)
+                .attr("stop-color", d => d.color);
+
+            legend.append("rect")
+                .attr("width", legendWidth)
+                .attr("height", legendHeight)
+                .style("fill", "url(#linear-gradient)");
+
+            // Add Singapore MEPS values to the legend
+            legend.append("rect")
+                .attr("y", -60)
+                .attr("width", legendWidth)
+                .attr("height", 20)
+                .style("fill", "#3182bd");
+
+            legend.append("text")
+                .attr("x", legendWidth + 5)
+                .attr("y", -50)
+                .attr("dy", "0.8em")
+                .style("font-size", "12px")
+                .style("fill", "#34495e")
+                .text("6.86");
+
+            legend.append("rect")
+                .attr("y", -30)
+                .attr("width", legendWidth)
+                .attr("height", 20)
+                .style("fill", "#6baed6");
+
+            legend.append("text")
+                .attr("x", legendWidth + 5)
+                .attr("y", -20)
+                .attr("dy", "0.8em")
+                .style("font-size", "12px")
+                .style("fill", "#34495e")
+                .text("6.10");
+
+            legend.append("text")
+            .attr("class", "axis-label")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -legendHeight / 2)
+            .attr("y", -20)
+            .attr("text-anchor", "middle")
+            .text("MEPS (CSPF)");
+
+            svg.append("text")
+                .attr("class", "axis-label")
+                .attr("text-anchor", "middle")
+                .attr("x", width / 2)
+                .attr("y", height + margin.bottom - 20)
+                .text("Cooling Capacity Range (kW)");
+
+            svg.append("text")
+                .attr("class", "axis-label")
+                .attr("text-anchor", "middle")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -margin.left + 20)
+                .attr("x", -height / 2)
+                .text("Country");
+        }
+
+        d3.csv("MEPS.csv").then(function(csvData) {
+            data = csvData.map(d => ({
+                Country: d.Country,
+                Technology: d.Technology,
+                Start: +d.Start,
+                End: +d.End,
+                MEPS: +d.MEPS
+            }));
+
+            createChart(data);
+
+            d3.select("#fullView").on("click", function() {
+                createChart(data);
+            });
+
+            d3.select("#simplifiedView").on("click", function() {
+                const simplifiedData = Object.values(data.reduce((acc, cur) => {
+                    if (!acc[cur.Country]) {
+                        acc[cur.Country] = [];
+                    }
+                    
+                    const existingTech = acc[cur.Country].find(d => d.Technology === cur.Technology);
+                    if (existingTech) {
+                        existingTech.ranges.push({Start: cur.Start, End: cur.End, MEPS: cur.MEPS});
+                        existingTech.maxMEPS = Math.max(existingTech.maxMEPS, cur.MEPS);
+                    } else {
+                        acc[cur.Country].push({
+                            Country: cur.Country,
+                            Technology: cur.Technology,
+                            ranges: [{Start: cur.Start, End: cur.End, MEPS: cur.MEPS}],
+                            maxMEPS: cur.MEPS
+                        });
+                    }
+                    return acc;
+                }, {})).flatMap(country => {
+                    const maxTech = country.reduce((max, tech) => tech.maxMEPS > max.maxMEPS ? tech : max);
+                    return maxTech.ranges.map(range => ({
+                        Country: maxTech.Country,
+                        Technology: maxTech.Technology,
+                        Start: range.Start,
+                        End: range.End,
+                        MEPS: range.MEPS
+                    }));
+                });
+                createChart(simplifiedData);
+            });
+        });
+    </script>
+</body>
+</html>
